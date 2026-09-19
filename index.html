@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>새해 2027년 내 인연 찾아보기</title>
+<style>
+  body { font-family: 'Malgun Gothic', sans-serif; background-color: #f9f6f0; color: #333; margin: 0; padding: 20px; }
+  .container { max-width: 600px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  h2 { color: #8b4513; text-align: center; font-size: 21px; margin-bottom: 10px; }
+  p { text-align: center; color: #666; font-size: 13px; margin-bottom: 20px; }
+  .form-group { margin-bottom: 15px; }
+  label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+  input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
+  .btn-submit { background: #fee500; color: #3c1e1e; border: none; width: 100%; padding: 12px; border-radius: 5px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+  .step-box { display: none; margin-top: 25px; padding: 20px; background: #fffdfa; border: 2px solid #e2d9c8; border-radius: 10px; }
+  .pay-link-btn { display: block; width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; text-align: center; text-decoration: none; box-sizing: border-box; }
+  .btn-to-step2 { background: #b76e79; color: white; }
+  .btn-to-step3 { background: #5bc0de; color: white; }
+  .btn-to-step4 { background: #fee500; color: #3c1e1e; }
+  .hook-box { text-align: center; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 12px; background-color: #f5efe6; border-radius: 5px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>새해 2027년 내 인연 찾아보기</h2>
+  <p>정확한 사주 분석을 위해 아래 정보를 입력해 주십시오.</p>
+
+  <!-- [990원 / 3만 원용: 본인 정보만 입력 (시간 제외)] -->
+  <div class="form-group">
+    <label>내 성함</label>
+    <input type="text" id="name" placeholder="예: 홍길동">
+  </div>
+  <div class="form-group">
+    <label>내 생년월일</label>
+    <input type="text" id="birth" placeholder="예: 1970년 10월 1일생">
+  </div>
+  <div class="form-group">
+    <label>내 성별</label>
+    <select id="gender">
+      <option value="male">남성</option>
+      <option value="female">여성</option>
+    </select>
+  </div>
+
+  <button class="btn-submit" onclick="showAnalysisSteps00()">사주 분석 결과 확인하기</button>
+
+  <!-- [1단계] 생년월일만 넣고 보는 1분 요약 (990원 유도) -->
+  <div id="box-step1" class="step-box">
+    <h3 style="color: #8b4513; margin-top: 0; font-size: 16px;">[1단계] 본인의 타고난 사주 총운 (1분 요약)</h3>
+    <p style="text-align: left; line-height: 1.6; color: #333; font-size: 14px;" id="text-step1">
+      생년월일을 입력하시면 분석 내용이 출력됩니다.
+    </p>
+    
+    <!-- 2027년 연애운 호기심 유발 -->
+    <div class="hook-box" style="color: #b76e79;">
+      "다가오는 2027년, 내 마음을 두근거릴 연애운은?"
+    </div>
+    
+      <a href="https://qr.kakaopay.com/FQsBZ4iSq1ef09390" target="_blank" class="pay-link-btn btn-to-step2">
+ 990원 결제하고 2027년 내 연애운 심층 확인하기 →
+    </a>
+<p style="font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4;">
+  ※ 결제 즉시 결과가 제공되는 디지털 콘텐츠로 열람 후 환불 불가합니다.<br>
+  (단, 시스템 오류로 미출력 시 예외 환불 가능)
+</p>
+  </div>
+
+  <!-- [2단계] 3만 원 2027년 연애운 및 7만 원 유도 (진정한 연인 위치) -->
+  <div id="box-step2" class="step-box" style="border-color: #b76e79;">
+    <h3 style="color: #8b4513; margin-top: 0; font-size: 16px;">[2단계] 3만 원 2027년 연애운 심층 분석 리포트</h3>
+    <p style="text-align: left; line-height: 1.6; color: #333; font-size: 14px;">
+      2027년 새해에 찾아올 연애운과 인연의 전체적인 흐름에 대한 심층 분석 내용입니다.
+    </p>
+    
+    <!-- 진정한 연인 위치 호기심 증폭 -->
+    <div class="hook-box" style="color: #5bc0de;">
+      "정말 2027년 새해에는 내 진정한 연인 상대가 어디에 있을까? 과연 나에게 존재하긴 할까?"
+    </div>
+<p style="font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4;">
+  ※ 결제 즉시 결과가 제공되는 디지털 콘텐츠로 열람 후 환불 불가합니다.<br>
+  (단, 시스템 오류로 미출력 시 예외 환불 가능)
+
+</p>
+    
+     <a href="https://qr.kakaopay.com/FQsBZ4iSq3a9801365" target="_blank" class="pay-link-btn btn-to-step3">
+  3만 원 리포트 확인하기 →
+</a>
+</div>
+
+  <!-- [3단계] 7만 원 진정한 연인 위치 (나 + 상대방 생년월일 대조) -->
+  <div id="box-step3" class="step-box" style="border-color: #5bc0de;">
+    <h3 style="color: #5bc0de; margin-top: 0; font-size: 16px;">[3단계] 7만 원 진정한 연인의 위치 및 두 사람 사주 대조 분석</h3>
+    
+    <!-- 7만 원부터 필요한 상대방 생년월일 입력란 -->
+    <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+      <div class="form-group">
+        <label style="color: #0056b3;">[궁합 대조] 상대방 성함</label>
+        <input type="text" id="partner-name" placeholder="예: 김영희">
+      </div>
+      <div class="form-group" style="margin-bottom: 0;">
+        <label style="color: #0056b3;">[궁합 대조] 상대방 생년월일</label>
+        <input type="text" id="partner-birth" placeholder="예: 1972년 5월 5일생">
+      </div>
+    </div>
+
+    <p style="text-align: left; line-height: 1.6; color: #333; font-size: 14px;">
+      입력하신 나와 상대방 두 사람의 생년월일을 대조하여, 2027년 새해에 진정한 연인이 어디에서 어떤 인연으로 나타나는지 풀어낸 분석입니다.
+    </p>
+
+    <!-- 사실혼/동거 심층 의문 증폭 -->
+    <div class="hook-box" style="color: #8b4513;">
+      "현재 나와 동거 중이거나 사실혼 관계에 있는 이 연인과 앞으로 계속 살아야 할까, 아니면 헤어져야 할까?"
+    </div>
+
+         <a href="https://qr.kakaopay.com/FQsBZ4iSq88b806143" target="_blank" class="pay-link-btn btn-to-step4">
+  7만 원 리포트 확인하기 →
+</a>
+<p style="font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4;">
+  ※ 결제 즉시 결과가 제공되는 디지털 콘텐츠로 열람 후 환불 불가합니다.<br>
+  (단, 시스템 오류로 미출력 시 예외 환불 가능)
+</p>
+   </div>
+
+  <!-- [4단계] 30만 원 최종 인연 판정 리포트 -->
+  <div id="box-step4" class="step-box" style="border-color: #fee500; background-color: #fffef0;">
+    <h3 style="color: #8b4513; margin-top: 0; font-size: 16px;">[4단계] 30만 원 최종 동거/사실혼 인연 심층 결정 리포트</h3>
+    <p style="text-align: left; line-height: 1.6; color: #333; font-size: 14px;">
+      나와 상대방의 사주 원국을 최종 대조하여, 현재의 동거 및 사실혼 생활을 유지해야 할지 아니면 정리해야 할지에 대한 운명적 최종 분석 리포트입니다.
+    </p>
+    
+    <a href="https://qr.kakaopay.com/FQsBZ4Isq249f005759" target="_blank" class="pay-link-btn btn-to-step4">
+      30만 원 최종 분석 리포트 결과 확인하기 →
+    </a>
+<p style="font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4;">
+  ※ 결제 즉시 결과가 제공되는 디지털 콘텐츠로 열람 후 환불 불가합니다.<br>
+  (단, 시스템 오류로 미출력 시 예외 환불 가능)
+</p>
+  </div>
+
+</div>
+
+<script>
+function showAnalysisSteps00() {
+  const name = document.getElementById('name').value;
+  const birth = document.getElementById('birth').value;
+  const gender = document.getElementById('gender').value;
+
+  if (!name || !birth) {
+    alert("내 성함과 생년월일을 정확히 입력해 주세요!");
+    return;
+  }
+
+  let baseSiju = (gender === 'female') 
+    ? "사주 원국을 살펴보니 수(水)와 목(木)의 유연하고 정직한 기운을 함께 타고나셨습니다. 성품이 따뜻하고 남을 배려하는 마음이 깊으며 맡은 일에 책임감이 뛰어납니다. 다만 주변 상황이 뜻대로 풀리지 않아 답답할 때가 있으나 고유한 역량이 탄탄하여 시간이 지날수록 빛을 보는 사주입니다."
+    : "사주 원국을 살펴보니 금(金)과 화(火)의 결단력 있고 추진력 있는 강한 기운을 타고나셨습니다. 책임감이 투철하고 어떤 난관에 부딪혀도 본인의 힘으로 돌파해 내는 저력이 있어 주변의 신뢰를 받는 사주 구조입니다.";
+
+  // 1단계 박스만 우선 표시
+  document.getElementById('box-step1').style.display = 'block';
+
+  document.getElementById('text-step1').innerHTML = 
+    "<strong>" + name + "</strong> 님 (" + birth + ")의 1분 사주 총운 요약 풀이:<br><br>" + baseSiju;
+}
+
+// 7만 원 결제 이동 팝업 (원화표시 ₩n 에러 완전 차단)
+function confirmStep70k0() {
+  let msg1 = "2027년 새해엔 내 연인은 어디에 있는지 궁금하세요?진정한 내 연인의 위치와 두 사람 사주 대조를 확인하는 7만 원 리포트 결제 단계로 이동합니다.";
+  let check1 = confirm(msg1);
+  if (check1) {
+    document.getElementById('box-step2').style.display = 'none';
+    document.getElementById('box-step3').style.display = 'block';
+    window.open("https://qr.kakaopay.com/FQsBZ4Isq249f005759", "_blank");
+  }
+}
+
+// 30만 원 결제 이동 팝업
+function confirmStep300k0() {
+  const partnerName = document.getElementById('partner-name').value;
+  const partnerBirth = document.getElementById('partner-birth').value;
+
+  if (!partnerName || !partnerBirth) {
+    alert("상대방 성함과 생년월일을 먼저 입력해 주세요!");
+    return;
+  }
+
+  let msg2 = "현재 나와 동거 중이거나 사실혼 관계에 있는 이 연인과 앞으로 쭉 살아야 될지, 헤어져야 될지 분석하는 30만 원 결제 단계로 이동합니다.";
+  let check2 = confirm(msg2);
+  if (check2) {
+    document.getElementById('box-step3').style.display = 'none';
+    document.getElementById('box-step4').style.display = 'block';
+  window.open("https://qr.kakaopay.com/FQsBZ4iSq249f007335", "_blank");
+
+  }
+}
+</script>
+
+</body>
+</html>
+
