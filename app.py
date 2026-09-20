@@ -32,7 +32,7 @@ class SajuHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(response_data, ensure_ascii=False).encode('utf-8'))
 
 def run():
-    server_address = ('localhost', 8000)
+    server_address = (0.0.0.0', 8000)
     httpd = HTTPServer(server_address, SajuHandler)
     print("사주 자동화 서버가 8000번 포트에서 실행 중입니다...")
     httpd.serve_forever()
