@@ -3,14 +3,14 @@ import urllib.parse
 import json
 
 class SajuHandler(BaseHTTPRequestHandler):
- def do_GET(self):
+        def do_GET(self):
         with open('index.html', 'rb') as file:
             content = file.read()
         self.send_response(200)
         self.send_header('Content-type', 'text/html; charset=utf-8')
         self.end_headers()
         self.wfile.write(content)
-    def do_POST(self):
+        def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
         data = json.loads(post_data.decode('utf-8'))
