@@ -2,203 +2,434 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Korean Four Pillars | Personalized Life Reading</title><style>
-*{box-sizing:border-box}
-body{
- margin:0;padding:18px;background:#f6f2eb;color:#252525;
- font-family:Arial,Helvetica,sans-serif;line-height:1.55
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Korean Four Pillars | Personalized Life Reading</title>
+
+<style>
+* {
+    box-sizing: border-box;
 }
-main{max-width:720px;margin:auto}
-section{
- background:#fff;margin-bottom:16px;padding:25px;
- border-radius:16px;box-shadow:0 5px 20px #00000010
+
+body {
+    margin: 0;
+    padding: 18px;
+    background: #f6f2eb;
+    color: #252525;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.55;
 }
-.hero{text-align:center;padding:34px 25px}
-.tag{color:#8b5e3c;font-weight:bold;font-size:14px}
-h1{font-size:32px;line-height:1.2;margin:12px 0}
-h2{font-size:22px;margin-top:0}
-.lead{font-size:17px;color:#555}
-.promise{font-size:20px;font-weight:bold;margin-top:20px}
-.price{
- background:#fff5df;padding:14px;border-radius:10px;
- margin-top:20px;font-weight:bold
+
+main {
+    max-width: 720px;
+    margin: auto;
 }
-.grid{
- display:grid;grid-template-columns:1fr 1fr;
- gap:8px;margin-top:15px
+
+section {
+    background: #ffffff;
+    margin-bottom: 16px;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px #00000010;
 }
-.grid div{
- background:#f6f6f6;padding:10px;border-radius:8px;
- text-align:center;font-size:14px
+
+.hero {
+    text-align: center;
+    padding: 34px 25px;
 }
-label{display:block;font-weight:bold;margin:14px 0 5px}
-input,select{
- width:100%;padding:12px;border:1px solid #ccc;
- border-radius:8px;font-size:16px
+
+.tag {
+    color: #8b5e3c;
+    font-weight: bold;
+    font-size: 14px;
 }
-.check{display:flex;gap:8px;align-items:center;font-weight:normal}
-.check input{width:auto}
-button{
- width:100%;padding:14px;margin-top:20px;border:0;
- border-radius:9px;background:#263f58;color:#fff;
- font-size:17px;font-weight:bold;cursor:pointer
+
+h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 12px 0;
 }
-button:disabled{background:#aaa;cursor:not-allowed}
-.note{
- margin-top:14px;padding:12px;background:#f3f5f7;
- border-radius:8px;font-size:13px;color:#555
+
+h2 {
+    font-size: 22px;
+    margin-top: 0;
 }
-#message{display:none;margin-top:14px;padding:12px;background:#fff5df;border-radius:8px}
-footer{text-align:center;color:#777;font-size:12px;padding:10px 0 25px}
-@media(max-width:600px){
- body{padding:10px}
- section{padding:20px}
- h1{font-size:27px}
- .grid{grid-template-columns:1fr}
+
+.lead {
+    font-size: 17px;
+    color: #555;
+}
+
+.promise {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.price {
+    background: #fff5df;
+    padding: 14px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.grid div {
+    background: #f6f6f6;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 14px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.check {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-weight: normal;
+}
+
+.check input {
+    width: auto;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 9px;
+    background: #263f58;
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#message {
+    display: none;
+    margin-top: 14px;
+    padding: 12px;
+    background: #fff5df;
+    border-radius: 8px;
+    color: #333;
+}
+
+.note {
+    margin-top: 14px;
+    padding: 12px;
+    background: #f3f5f7;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #555;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    padding: 10px 0 25px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
+
 <main>
 
 <section class="hero">
-<div class="tag">Ancient Korean Four Pillars · A Guide to Your Life Patterns</div>
- <h1>What Does Your Birth Reveal About You?</h1>
 
- <p class="lead">
-Discover what the Korean tradition of Four Pillars reveals about your personality, love, relationships, money, career, and the turning points in your life.
+<div class="tag">
+Ancient Korean Four Pillars · A Guide to Your Life Patterns
+</div>
+
+<h1>
+What Does Your Birth Reveal About You?
+</h1>
+
+<p class="lead">
+Discover what the Korean tradition of Four Pillars reveals about
+your personality, love, relationships, money, career,
+and the turning points in your life.
 </p>
- <div class="promise">One Birth. Four Pillars. A Story That's Uniquely Yours.</div>
- <div class="price">
-  Complete Four Pillars Life Reading<br>
-  
-  $20 USD · One-time payment
- </div>
+
+<div class="promise">
+One Birth. Four Pillars. A Story That's Uniquely Yours.
+</div>
+
+<div class="price">
+Complete Four Pillars Life Reading<br>
+$20 USD · One-time payment
+</div>
+
 </section>
 
-<section>
- <h2>What Your Reading Explores</h2>
 
- <div class="grid">
-  <div>Personality & Natural Tendencies</div>
-  <div>Strengths & Potential</div>
-  <div>Love & Relationships</div>
-  <div>Marriage & Partnership</div>
-  <div>Money & Financial Patterns</div>
-  <div>Business & Opportunity</div>
-  <div>Career & Life Direction</div>
-  <div>Relationships with Others</div>
-  <div>Change & Turning Points</div>
-  <div>Personal Growth</div>
-  <div>Life Patterns</div>
-  <div>Overall Life Flow</div>
- </div>
+<section>
+
+<h2>What Your Reading Explores</h2>
+
+<div class="grid">
+
+<div>Personality & Natural Tendencies</div>
+<div>Strengths & Potential</div>
+
+<div>Love & Relationships</div>
+<div>Marriage & Partnership</div>
+
+<div>Money & Financial Patterns</div>
+<div>Business & Opportunity</div>
+
+<div>Career & Life Direction</div>
+<div>Relationships with Others</div>
+
+<div>Change & Turning Points</div>
+<div>Personal Growth</div>
+
+<div>Life Patterns</div>
+<div>Overall Life Flow</div>
+
+</div>
+
 </section>
 
+
 <section>
- 
+
 <h2>Discover My Four Pillars</h2>
- <label for="birth">Date of Birth</label>
- <input id="birth" type="date">
 
- <label for="time">Time of Birth</label>
- <input id="time" type="time">
+<label for="birth">
+Date of Birth
+</label>
 
- <label class="check">
-  <input id="unknown" type="checkbox">
-  I don't know my exact birth time.
- </label>
+<input
+    id="birth"
+    type="date"
+>
 
- <label for="place">Place of Birth</label>
- <input id="place" type="text"
-        placeholder="City, State/Province, Country">
 
- <button type="button" onclick="continueReading()">
-  Discover My Four Pillars
- </button>
+<label for="time">
+Time of Birth
+</label>
 
- <div id="message"></div>
+<input
+    id="time"
+    type="time"
+>
+
+
+<label class="check">
+
+<input
+    id="unknown"
+    type="checkbox"
+>
+
+I don't know my exact birth time.
+
+</label>
+
+
+<label for="place">
+Place of Birth
+</label>
+
+<input
+    id="place"
+    type="text"
+    placeholder="City, State/Province, Country"
+>
+
+
+<button
+    id="paymentButton"
+    type="button"
+    onclick="continueReading()"
+>
+Continue to PayPal — $20 USD
+</button>
+
+
+<div id="message"></div>
+
+
+<div class="note">
+Your birth information is used to prepare your personalized
+Four Pillars reading. Payment is a one-time payment of $20 USD.
+</div>
+
 </section>
 
 
 <section>
- <h2>About Korean Four Pillars</h2>
- <p>
-  Saju is a traditional Korean system that interprets patterns
-  associated with the date and time of birth. This reading is
-  provided for personal reflection and entertainment.
- </p>
+
+<h2>About Korean Four Pillars</h2>
+
+<p>
+Saju is a traditional Korean system that interprets patterns
+associated with the date and time of birth.
+This reading is provided for personal reflection and entertainment.
+</p>
+
 </section>
+
 
 <footer>
- Korean Saju · Four Pillars of Destiny
+Korean Saju · Four Pillars of Destiny
 </footer>
 
 </main>
 
+
 <script>
-const time=document.getElementById("time");
-const unknown=document.getElementById("unknown");
-const message=document.getElementById("message");
 
-unknown.onchange=()=>{
- time.disabled=unknown.checked;
- if(unknown.checked)time.value="";
-};
+const time =
+    document.getElementById("time");
 
-function show(text){
- message.style.display="block";
- message.textContent=text;
+const unknown =
+    document.getElementById("unknown");
+
+const message =
+    document.getElementById("message");
+
+
+unknown.addEventListener("change", function() {
+
+    time.disabled = unknown.checked;
+
+    if (unknown.checked) {
+        time.value = "";
+    }
+
+});
+
+
+function show(text) {
+
+    message.style.display = "block";
+    message.textContent = text;
+
 }
 
-  async function continueReading(){
-  const birth = document.getElementById("birth").value;
-  const place = document.getElementById("place").value.trim();
-  const birthTime = unknown.checked ? "" : time.value;
 
-  if(!birth) return show("Please enter your date of birth.");
-  if(!unknown.checked && !birthTime)
-    return show("Please enter your birth time or select that you don't know it.");
-  if(!place) return show("Please enter your place of birth.");
+function continueReading() {
 
-  try {
-    const response = await fetch("/api/paypal-config");
+    const birth =
+        document.getElementById("birth").value;
 
-    if(!response.ok){
-      return show("PayPal payment configuration could not be loaded.");
+    const place =
+        document.getElementById("place").value.trim();
+
+    const birthTime =
+        unknown.checked ? "" : time.value;
+
+
+    if (!birth) {
+
+        show("Please enter your date of birth.");
+        return;
+
     }
 
-    const config = await response.json();
 
-    if(config.status !== "success" || !config.client_id){
-      return show("PayPal payment is not ready yet.");
+    if (!unknown.checked && !birthTime) {
+
+        show(
+            "Please enter your birth time or select that you don't know it."
+        );
+
+        return;
+
     }
 
-    sessionStorage.setItem("saju_birth", birth);
-    sessionStorage.setItem("saju_time", birthTime);
-    sessionStorage.setItem("saju_place", place);
+
+    if (!place) {
+
+        show("Please enter your place of birth.");
+        return;
+
+    }
+
+
+    sessionStorage.setItem(
+        "saju_birth",
+        birth
+    );
+
+    sessionStorage.setItem(
+        "saju_time",
+        birthTime
+    );
+
+    sessionStorage.setItem(
+        "saju_place",
+        place
+    );
+
+    sessionStorage.setItem(
+        "saju_price",
+        "20.00"
+    );
+
+    sessionStorage.setItem(
+        "saju_currency",
+        "USD"
+    );
+
+
+    show("Opening PayPal secure payment...");
+
 
     window.location.href =
-      "https://www.paypal.com/ncp/payment/9HQ9YTZ9TLGDE";
+        "https://www.paypal.com/ncp/payment/9HQ9YTZ9TLGDE";
 
-  } catch(error) {
-    show("Unable to connect to the payment server. Please try again.");
-  }
-}
 }
 
-/*
- FINAL PAYMENT FLOW:
- 1. Send birth information securely to the server.
- 2. Start the approved payment provider.
- 3. Verify successful payment on the server.
- 4. Generate the personalized Saju reading.
- 5. Unlock the reading immediately after verification.
-*/
 </script>
 
 </body>
-
 </html>
