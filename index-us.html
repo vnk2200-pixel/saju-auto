@@ -152,16 +152,40 @@ function show(text){
  message.textContent=text;
 }
 
-function continueReading(){
- const birth=document.getElementById("birth").value;
- const place=document.getElementById("place").value.trim();
+  async function continueReading(){
+  const birth = document.getElementById("birth").value;
+  const place = document.getElementById("place").value.trim();
+  const birthTime = unknown.checked ? "" : time.value;
 
- if(!birth)return show("Please enter your date of birth.");
- if(!unknown.checked&&!time.value)
-  return show("Please enter your birth time or select that you don't know it.");
- if(!place)return show("Please enter your place of birth.");
+  if(!birth) return show("Please enter your date of birth.");
+  if(!unknown.checked && !birthTime)
+    return show("Please enter your birth time or select that you don't know it.");
+  if(!place) return show("Please enter your place of birth.");
 
- window.location.href = "https://www.paypal.com/ncp/payment/9HQ9YTZ9TLGDE";
+  try {
+    const response = await fetch("/api/paypal-config");
+
+    if(!response.ok){
+      return show("PayPal payment configuration could not be loaded.");
+    }
+
+    const config = await response.json();
+
+    if(config.status !== "success" || !config.client_id){
+      return show("PayPal payment is not ready yet.");
+    }
+
+    sessionStorage.setItem("saju_birth", birth);
+    sessionStorage.setItem("saju_time", birthTime);
+    sessionStorage.setItem("saju_place", place);
+
+    window.location.href =
+      "https://www.paypal.com/ncp/payment/9HQ9YTZ9TLGDE";
+
+  } catch(error) {
+    show("Unable to connect to the payment server. Please try again.");
+  }
+}
 }
 
 /*
