@@ -424,8 +424,25 @@ function continueReading() {
     show("Opening PayPal secure payment...");
 
 
+   fetch("/api/paypal/create-order", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({})
+})
+.then(response => response.json())
+.then(data => {
+    if (!data.order_id) {
+        throw new Error(data.message || "PayPal order creation failed.");
+    }
+
     window.location.href =
-        "https://www.paypal.com/ncp/payment/9HQ9YTZ9TLGDE";
+        "https://www.paypal.com/checkoutnow?token=" + data.order_id;
+})
+.catch(error => {
+    show("PayPal payment error: " + error.message);
+});
 
 }
 
