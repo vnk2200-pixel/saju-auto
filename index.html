@@ -1,167 +1,309 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>2027년 새해, 내 사주에는 어떤 길이 열릴까? | 러브 오라클</title>
+<title>LOVE ORACLE VIỆT NAM | Hôn nhân Hàn Quốc & Tình duyên</title>
 
 <style>
 *{
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  font-family:"Malgun Gothic",sans-serif;
-  background:#fbf7ef;
-  color:#302925;
   margin:0;
-  line-height:1.65;
+  font-family:Arial,"Noto Sans",sans-serif;
+  color:#30252a;
+  background:
+    linear-gradient(180deg,#fff8fa 0%,#fff 45%,#fff6f8 100%);
+  line-height:1.7;
 }
 
-.w{
-  max-width:980px;
+.wrap{
+  max-width:900px;
   margin:auto;
-  padding:24px;
-}
-
-.hero,
-.box,
-.item,
-footer{
-  background:#fff;
-  border:1px solid #e5dbcf;
-  border-radius:16px;
-  padding:22px;
+  padding:0 20px;
 }
 
 .hero{
+  min-height:92vh;
+  display:flex;
+  align-items:center;
   text-align:center;
-  margin-bottom:22px;
+  color:#fff;
+  background:
+    radial-gradient(circle at top,#a91f4c 0%,#631630 42%,#210d18 100%);
+  padding:55px 20px;
+}
+
+.brand{
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:1px;
+  color:#ffb8d0;
+  margin-bottom:18px;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:24px;
 }
 
 .hero h1{
-  color:#653d31;
-  margin:10px 0;
+  margin:0 auto 18px;
+  max-width:760px;
+  font-size:clamp(37px,7vw,68px);
+  line-height:1.08;
+}
+
+.hero .yellow{
+  color:#ffd45c;
+  font-size:clamp(21px,4vw,31px);
+  font-weight:900;
+  max-width:760px;
+  margin:25px auto;
+  line-height:1.35;
+}
+
+.hero-box{
+  max-width:690px;
+  margin:30px auto;
+  padding:22px;
+  background:rgba(255,255,255,.94);
+  color:#4a2935;
+  border-radius:20px;
+  font-size:20px;
+  font-weight:800;
+}
+
+.hero p{
+  max-width:720px;
+  margin:18px auto;
+  font-size:17px;
+}
+
+.cta{
+  display:inline-block;
+  margin-top:22px;
+  padding:16px 28px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ff3c91,#ff6b9f);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:0 10px 30px rgba(0,0,0,.22);
+}
+
+.section{
+  padding:70px 0;
+}
+
+.section h2{
+  text-align:center;
+  font-size:clamp(29px,5vw,43px);
+  line-height:1.25;
+  margin:0 0 15px;
+}
+
+.lead{
+  max-width:720px;
+  margin:0 auto 38px;
+  text-align:center;
+  color:#6b555e;
+  font-size:17px;
+}
+
+.checks{
+  display:grid;
+  gap:18px;
+}
+
+.check{
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  border-left:6px solid #d6336c;
+  box-shadow:0 8px 30px rgba(85,35,55,.09);
+}
+
+.check h3{
+  margin:0 0 10px;
+  color:#a91f4c;
+  font-size:21px;
+}
+
+.check p{
+  margin:0;
+}
+
+.highlight{
+  background:#fff0f5;
+}
+
+.question-box{
+  max-width:760px;
+  margin:30px auto 0;
+  background:#fff;
+  border-radius:24px;
+  padding:30px;
+  box-shadow:0 12px 35px rgba(80,25,45,.10);
+}
+
+.question-box h3{
+  text-align:center;
+  font-size:26px;
+  color:#9f234e;
+  margin-top:0;
+}
+
+.question-box ul{
+  padding-left:24px;
+}
+
+.analysis{
+  background:#29101d;
+  color:#fff;
+}
+
+.analysis .lead{
+  color:#e8cad5;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  max-width:760px;
+  margin:30px auto;
+}
+
+.card{
+  padding:18px;
+  border-radius:16px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.price{
+  text-align:center;
+  margin:35px 0;
+}
+
+.price strong{
+  display:block;
+  color:#ffd45c;
+  font-size:46px;
+}
+
+.formbox{
+  background:#fff;
+  color:#30252a;
+  max-width:800px;
+  margin:0 auto;
+  padding:30px;
+  border-radius:24px;
+}
+
+.formbox h2{
+  text-align:left;
 }
 
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:15px;
 }
 
-.item h3{
-  margin:0;
-}
-
-.price{
-  font-size:22px;
+label{
+  display:block;
   font-weight:800;
-  color:#7d3f2d;
-  margin:8px 0;
+  margin:14px 0 6px;
 }
 
-.item p,
-.small{
-  color:#6d625b;
-  font-size:13px;
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #d7c9ce;
+  border-radius:11px;
+  font-size:16px;
+  background:#fff;
+}
+
+.person{
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid #eadde2;
 }
 
 button{
   width:100%;
-  padding:12px;
   border:0;
-  border-radius:9px;
-  font-weight:800;
+  border-radius:14px;
+  margin-top:25px;
+  padding:17px;
+  font-size:19px;
+  font-weight:900;
   cursor:pointer;
-}
-
-.pick{
-  background:#eee4d8;
-}
-
-.pick.on{
-  background:#60463a;
   color:#fff;
+  background:linear-gradient(90deg,#bd235d,#e34978);
 }
 
-.pay{
-  background:#f4cf00;
-  margin-top:15px;
+.notice{
+  margin-top:17px;
+  padding:15px;
+  background:#fff1f5;
+  border-radius:12px;
+  font-size:14px;
 }
 
-.box{
-  margin-top:18px;
+.locked{
+  margin-top:25px;
+  padding:25px;
+  border:1px dashed #d7a6b8;
+  border-radius:16px;
+  text-align:center;
 }
 
-input,
-select{
-  width:100%;
-  padding:11px;
-  margin:5px 0 10px;
-  border:1px solid #d8cec2;
-  border-radius:8px;
-}
-
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-#partner{
-  display:none;
-  margin-top:12px;
-  padding-top:12px;
-  border-top:1px solid #eee;
-}
-
-details{
-  padding:10px 0;
-  border-bottom:1px solid #eee;
-}
-
-summary{
-  font-weight:800;
-  cursor:pointer;
+.lookup{
+  margin-top:25px;
+  padding:24px;
+  border-radius:18px;
+  background:#fff8fa;
 }
 
 footer{
-  margin-top:18px;
-  font-size:12px;
+  text-align:center;
+  padding:35px 20px;
+  color:#806872;
+  font-size:13px;
 }
 
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#0008;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal>div{
-  max-width:500px;
-  width:100%;
-  background:#fff;
-  border-radius:16px;
-  padding:24px;
-}
-
-@media(max-width:700px){
-  .grid,
-  .row{
+@media(max-width:650px){
+  .grid,.cards{
     grid-template-columns:1fr;
   }
 
-  .w{
-    padding:12px;
+  .hero{
+    min-height:auto;
+    padding:55px 18px;
+  }
+
+  .section{
+    padding:52px 0;
+  }
+
+  .formbox{
+    padding:20px;
   }
 }
 </style>
@@ -169,521 +311,560 @@ footer{
 
 <body>
 
-<div class="w">
-
 <section class="hero">
-  <b>🔮 러브 오라클 · 2027 신년 사주보감</b>
+  <div class="wrap">
 
-  <h1>2027년 새해, 내 사주에는 어떤 길이 열릴까?</h1>
+    <div class="brand">
+      ♥ LOVE ORACLE VIỆT NAM
+    </div>
 
-  <p>
-    생년월일과 태어난 시간을 바탕으로
-    사주·명리 · 인연 · 이동 · 사업 · 재물 · 진로 · 직업
-  </p>
+    <div class="badge">
+      HÔN NHÂN HÀN QUỐC · TÌNH DUYÊN · CUỘC SỐNG
+    </div>
+
+    <h1>
+      Bạn đang nghĩ đến một cuộc sống mới tại Hàn Quốc?
+    </h1>
+
+    <div class="yellow">
+      Trước khi quyết định kết hôn,
+      hãy tìm hiểu cuộc sống thật mà bạn sẽ sống.
+    </div>
+
+    <div class="hero-box">
+      Điều quan trọng không chỉ là
+      “có thể đến Hàn Quốc hay không”,
+      mà là
+      “sau khi đến Hàn Quốc, mình sẽ sống như thế nào”.
+
+     </div>
+
+    <p>
+      Một cuộc hôn nhân được chuẩn bị kỹ có thể mở ra
+      một cuộc sống mới: một mái ấm ổn định,
+      cơ hội học tiếng Hàn, làm việc,
+      phát triển bản thân và xây dựng gia đình hạnh phúc.
+    </p>
+
+    <a class="cta" href="#five">
+      5 điều nên kiểm tra trước khi kết hôn ↓
+    </a>
+
+  </div>
 </section>
 
+<section class="section" id="five">
+  <div class="wrap">
 
-<h2>원하는 풀이를 선택하세요</h2>
+    <h2>
+      5 điều nên kiểm tra trước khi kết hôn với một người đàn ông Hàn Quốc
+    </h2>
 
-<div class="grid" id="products"></div>
+    <p class="lead">
+      Đừng chỉ nhìn vào lời hứa.
+      Hãy dành thời gian tìm hiểu con người,
+      gia đình và cuộc sống thực tế của người bạn đang cân nhắc kết hôn.
+    </p>
+ <div class="checks">
 
+      <div class="check">
+        <h3>
+          1. Hãy tận mắt tìm hiểu cuộc sống thật của anh ấy
+        </h3>
 
-<section class="box" id="order">
+        <p>
+          Anh ấy làm công việc gì?
+          Sống ở đâu?
+          Cuộc sống và thu nhập có ổn định không?
+          Sau khi kết hôn bạn sẽ sống ở thành phố,
+          thị trấn hay vùng nông thôn?
+          Đây là những điều nên biết trước,
+          không phải sau khi đã kết hôn.
+        </p>
+      </div>
 
-<h2>고객 정보 입력</h2>
+      <div class="check">
+        <h3>
+          2. Nếu anh ấy thật sự nghiêm túc,
+          hãy đề nghị được đến Hàn Quốc tìm hiểu trước
+        </h3>
 
-<div id="sum">
-  먼저 상품을 선택해 주세요.
+        <p>
+          Nếu điều kiện pháp lý và hoàn cảnh cho phép,
+          bạn có thể đề nghị anh ấy hỗ trợ để bạn sang Hàn Quốc
+          trong một chuyến đi ngắn trước khi quyết định kết hôn.
+          Nên đi cùng cha mẹ, anh chị em
+          hoặc một người thân mà bạn tin tưởng.
+        </p>
+
+        <p>
+          Hãy trực tiếp xem nơi anh ấy đang sống,
+          khu vực xung quanh, công việc,
+          điều kiện sinh hoạt và cuộc sống hằng ngày.
+          Một chuyến tìm hiểu thực tế có thể giúp bạn
+          đưa ra quyết định bình tĩnh và an toàn hơn.
+        </p>
+      </div>
+<div class="check">
+        <h3>
+          3. Hãy tìm hiểu gia đình và môi trường sống của anh ấy
+        </h3>
+
+        <p>
+          Hôn nhân không chỉ là cuộc sống của hai người.
+          Hãy tìm hiểu cha mẹ và gia đình của anh ấy,
+          cách gia đình đối xử với bạn,
+          và sau khi kết hôn bạn sẽ sống riêng
+          hay sống cùng gia đình chồng.
+        </p>
+
+        <p>
+          Khi hiểu trước môi trường gia đình,
+          văn hóa và những điều được mong đợi sau hôn nhân,
+          bạn sẽ dễ chuẩn bị cho cuộc sống mới tại Hàn Quốc hơn.
+        </p>
+      </div>
+
+      <div class="check">
+        <h3>
+          4. Hãy nói rõ về tiền bạc, công việc và tương lai
+        </h3>
+
+        <p>
+          Trước khi kết hôn, hai người nên nói chuyện rõ ràng
+          về thu
+nhập, chi phí sinh hoạt, nhà ở,
+          công việc của bạn sau khi đến Hàn Quốc
+          và kế hoạch tài chính của gia đình.
+        </p>
+
+        <p>
+          Một cuộc sống hạnh phúc không chỉ cần tình cảm.
+          Sự tôn trọng, trách nhiệm và kế hoạch thực tế
+          sẽ giúp hai người xây dựng cuộc sống ổn định hơn.
+        </p>
+      </div>
+
+      <div class="check">
+        <h3>
+          5. Hãy tự hỏi: Tôi có thể thật sự hạnh phúc bên người này không?
+        </h3>
+
+        <p>
+          Đừng quyết định chỉ vì mong muốn được đến Hàn Quốc.
+          Hãy dành thời gian để xem anh ấy có tôn trọng bạn,
+          lắng nghe bạn và giữ lời hứa hay không.
+        </p>
+
+        <p>
+          Nếu hai người có thể trò chuyện chân thành,
+          cùng giải quyết khó khăn và tôn trọng sự khác biệt,
+          cuộc sống tại Hàn Quốc có thể trở thành
+          một khởi đầu mới ấm áp và hạnh phúc.
+        </p>
+      </div>
+
+    </div>
 </div>
-
-
-<div class="row">
-
-<div>
-성함
-<input
-  id="name"
-  placeholder="예: 홍길동">
-</div>
-
-<div>
-성별
-<select id="gender">
-  <option value="">선택</option>
-  <option value="남성">남성</option>
-  <option value="여성">여성</option>
-</select>
-</div>
-
-</div>
-
-
-<div class="row">
-
-<div>
-달력 기준
-<select id="cal">
-  <option value="양력">양력</option>
-  <option value="음력">음력</option>
-</select>
-</div>
-
-<div>
-생년월일
-<input
-  id="birth"
-  placeholder="예: 1970-10-01">
-</div>
-
-</div>
-
-
-<div>
-출생시간
-<input
-  id="time"
-  placeholder="예: 14:30 / 모르면 '모름'">
-</div>
-
-
-<div id="partner">
-
-<h3>상대방 정보</h3>
-
-<div class="row">
-
-<div>
-상대방 성함
-<input
-  id="pn"
-  placeholder="상대방 성함">
-</div>
-
-<div>
-상대방 성별
-<select id="pg">
-  <option value="">선택</option>
-  <option value="남성">남성</option>
-  <option value="여성">여성</option>
-</select>
-</div>
-
-</div>
-
-<div>
-상대방 생년월일
-<input
-  id="pb"
-  placeholder="예: 1972-05-05">
-</div>
-
-</div>
-
-
-<label>
-<input
-  id="agree"
-  type="checkbox"
-  style="width:auto">
-이용조건 및 취소·환불 안내를 확인했습니다.
-</label>
-
-
-<button
-  class="pay"
-  onclick="pay()">
-카카오페이로 결제하기
-</button>
-
-<p class="small">
-현재 결제 서비스 준비 중입니다.
-정식 카카오페이 결제 연동 완료 후 결제가 가능합니다.
-</p>
-
 </section>
 
+<section class="section highlight" id="relationship">
+  <div class="wrap">
 
-<section class="box">
+    <h2>
+      Vậy người bạn đang nghĩ đến có thật sự phù hợp với bạn?
+    </h2>
 
-<h2>서비스 이용 안내</h2>
+    <p class="lead">
+      Sau khi tìm hiểu cuộc sống thực tế của người ấy,
+      có lẽ bạn vẫn còn những câu hỏi trong lòng.
+    </p>
 
-<details open>
+    <div class="question-box">
 
-<summary>
-서비스 제공 방식 및 시점
-</summary>
+      <h3>
+        Hai người sẽ có một cuộc sống như thế nào nếu ở bên nhau?
+      </h3>
 
-<p>
-러브 오라클은 고객이 입력한 정보를 바탕으로
-사주·명리학적 관점의 풀이 결과를 제공하는
-온라인 디지털 콘텐츠 서비스입니다.
-</p>
+      <ul>
+        <li>
+          Người ấy có thật sự quan tâm và trân trọng bạn không?
+        </li>
 
-<p>
-정식 결제 연동 후에는 결제 승인 및 시스템 처리가 완료되면
-결과 조회 화면을 통해 디지털 풀이 결과를 제공합니다.
-</p>
+        <li>
+          Tính cách của hai người có thể hòa hợp lâu dài không?
+        </li>
 
-</details>
+        <li>
+          Sau khi kết hôn, điều gì có thể giúp hai người gần nhau hơn?
+        </li>
 
+        <li>
+          Những khác biệt nào cần được hiểu và chuẩn bị trước?
+        </li>
 
-<details>
+        <li>
+          Cuộc sống, công việc và tài chính của bạn
+          có thể thay đổi như thế nào khi bắt đầu cuộc sống mới?
+        </li>
+      </ul>
 
-<summary>
-취소·환불 안내
-</summary>
+      <p>
+        Những câu hỏi này không thể quyết định tương lai thay cho bạn.
+        Nhưng một góc nhìn sâu hơn về hai người
+        có thể giúp bạn suy nghĩ rõ ràng hơn
+        trước một quyết định quan trọng.
+      </p>
 
-<p>
-결제 후 아직 디지털 풀이 결과의 제공이 시작되지 않은 주문은
-고객센터를 통해 취소·환불을 요청할 수 있습니다.
-</p>
+    </div>
 
-<p>
-결과 제공이 시작된 이후에는 디지털 콘텐츠의 특성 및
-관련 법령에 따라 단순 변심에 의한 청약철회가 제한될 수 있습니다.
-</p>
-
-<p>
-시스템 오류, 결제 상품과 다른 서비스 제공 등
-판매자 귀책사유가 확인되는 경우
-재제공 또는 환불 등 필요한 조치를 합니다.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-사주·명리 풀이 이용조건
-</summary>
-
-<p>
-본 서비스는 전통 명리학적 해석을 바탕으로 제공되는
-참고용 디지털 콘텐츠입니다.
-</p>
-
-<p>
-미래 사건, 재산상 이익, 부동산 가격, 사업 성공,
-취업·합격 또는 인간관계의 결과를 보장하지 않습니다.
-</p>
-
-<p>
-중요한 재산·직업·법률·의료 및 개인적 결정은
-실제 상황과 관련 전문가의 조언 등을 함께 고려하여
-이용자가 판단해야 합니다.
-</p>
-
-</details>
-
+  </div>
 </section>
+<section class="section analysis" id="analysis">
+  <div class="wrap">
 
+    <h2>
+      Bản luận giải chuyên sâu dành riêng cho bạn
+    </h2>
 
-<footer>
+    <p class="lead">
+      Dựa trên thông tin bạn cung cấp,
+      bản luận giải giúp bạn nhìn sâu hơn vào tình duyên,
+      mối quan hệ và hướng đi trong cuộc sống.
+    </p>
 
-<b>러브 오라클 (Lover Oracle)</b><br>
+    <div class="cards">
 
-대표자: 김태현<br>
+      <div class="card">
+        <strong>♥ Tình yêu & nhân duyên</strong>
+        <p>
+          Tìm hiểu xu hướng tình cảm,
+          sức hút và cách bạn xây dựng một mối quan hệ lâu dài.
+        </p>
+      </div>
 
-사업자등록번호: 137-32-01904<br>
-
-사업장 소재지:
-경기도 안산시 단원구 대부황금로 1153(대부북동)<br>
-
-서비스 이용시간: 24시간 연중무휴<br>
-
-고객센터: 010-5088-9989 · 상담시간: 평일 09:00~18:00<br>
-
-<span class="small">
-※ 시스템 점검 또는 장애 발생 시 서비스 이용이 일시 제한될 수 있습니다.
-</span>
-
-<br>
-
-온라인 사주·운세 분석 디지털 콘텐츠 · © 2026 Lover Oracle
-
-</footer>
-
-</div>
-
-
-<div class="modal" id="m">
-
-<div>
-
-<h3>카카오페이 결제 준비</h3>
-
-<p id="mt"></p>
-
-<p>
-현재 카카오페이 정식 온라인 결제 연동을 준비하고 있습니다.
+      <div class="card">
+        <strong>♥ Người bạn đang nghĩ đến</strong>
+        <p>
+          Nếu bạn nhập thông tin của người ấy,
+          bản luận giải sẽ bổ sung góc nhìn về sự hòa hợp,
+          điểm khác biệt và những điều hai người cần thấu hiểu trong mối quan hệ.
 </p>
-
-<button onclick="closeModal()">
-확인
-</button>
-
 </div>
+<section class="section" id="apply">
+  <div class="wrap">
 
-</div>
+    <div class="formbox">
 
+      <h2>
+        Nhập thông tin để bắt đầu
+      </h2>
 
+      <p>
+        Vui lòng nhập chính xác thông tin của bạn.
+        Nếu bạn muốn xem thêm về sự hòa hợp với người ấy,
+        hãy nhập thông tin của người ấy bên dưới.
+      </p>
+
+      <form id="fortuneForm">
+
+        <h3>Thông tin của bạn</h3>
+
+        <div class="grid">
+
+          <div>
+            <label for="name">
+              Họ và tên *
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Nhập họ và tên"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="birth">
+              Ngày sinh *
+            </label>
+            <input
+              id="birth"
+              name="birth"
+              type="date"
+              required
+            >
+          </div>
+
+        </div>
+
+        <label for="gender">
+          Giới tính *
+        </label>
+
+        <select id="gender" name="gender" required>
+          <option value="">Chọn giới tính</option>
+          <option value="female">Nữ</option>
+          <option value="male">Nam</option>
+        </select>
+
+        <div class="person">
+
+          <h3>
+            Thông tin người bạn đang nghĩ đến
+          </h3>
+
+          <p>
+            Nếu bạn biết thông tin của người ấy,
+            hãy nhập để bản luận giải có thêm góc nhìn
+            về mối quan hệ của hai người.
+          </p>
+
+          <div class="grid">
+
+            <div>
+              <label for="partnerName">
+                Họ và tên
+              </label>
+
+              <input
+                id="partnerName"
+                name="partnerName"
+                type="text"
+                placeholder="Tên người ấy"
+              >
+            </div>
+
+            <div>
+              <label for="partnerBirth">
+                Ngày sinh
+              </label>
+
+              <input
+                id="partnerBirth"
+                name="partnerBirth"
+                type="date"
+              >
+            </div>
+
+          </div>
+
+          <label for="partnerGender">
+            Giới tính
+          </label>
+
+          <select id="partnerGender" name="partnerGender">
+            <option value="">Chọn giới tính</option>
+            <option value="male">Nam</option>
+            <option value="female">Nữ</option>
+          </select>
+
+        </div>
+  <div class="price">
+          <p>Bản luận giải chuyên sâu</p>
+          <strong>550.000₫</strong>
+          <p>
+            Thanh toán một lần · Không tự động gia hạn
+          </p>
+        </div>
+
+        <div class="notice">
+          <strong>Vui lòng kiểm tra lại thông tin trước khi thanh toán.</strong>
+          <br>
+          Sau khi hệ thống xác nhận thanh toán thành công,
+          bản luận giải của bạn mới được tạo và mở tự động.
+        </div>
+
+        <button type="submit" id="paymentButton">
+          Tiếp tục thanh toán 550.000₫
+        </button>
+
+      </form>
+
+      <div class="locked" id="resultArea">
+        <h3>Kết quả của bạn</h3>
+        <p>
+          🔒 Bản luận giải sẽ được mở sau khi hệ thống
+          xác nhận thanh toán 550.000₫ thành công.
+        </p>
+      </div>
+
+      <div class="lookup">
+        <h3>Xem lại kết quả đã mua</h3>
+
+        <p>
+          Khách hàng đã thanh toán có thể xem lại kết quả
+          bằng mã đơn hàng được cấp sau khi thanh toán.
+        </p>
+
+        <label for="orderCode">
+          Mã đơn hàng
+        </label>
+
+        <input
+          id="orderCode"
+          type="text"
+          placeholder="Nhập mã đơn hàng"
+        >
+
+        <button type="button" id="lookupButton">
+          Xem lại kết quả
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 <script>
+const fortuneForm = document.getElementById("fortuneForm");
+const paymentButton = document.getElementById("paymentButton");
+const lookupButton = document.getElementById("lookupButton");
+const orderCodeInput = document.getElementById("orderCode");
+const resultArea = document.getElementById("resultArea");
 
-const data = [
+fortuneForm.addEventListener("submit", async function(event) {
+  event.preventDefault();
 
-[
-"❤️ 새해 2027년, 나의 인연은?",
-990,
-"2027년 나의 인연은?",
-0
-],
+  const name = document.getElementById("name").value.trim();
+  const birth = document.getElementById("birth").value;
+  const gender = document.getElementById("gender").value;
 
-[
-"❤️ 새해 2027년, 나의 심장을 뛰게 하는 인연은?",
-30000,
-"다가오는 새해에는 내 마음을 잡아줄 인연은",
-0
-],
+  const partnerName =
+    document.getElementById("partnerName").value.trim();
 
-[
-"❤️ 현재 나의 인연은 진심으로 나를 사랑하고 있을까?",
-70000,
-"현재 나의 인연은 진심으로 나를 사랑하고 있을까?",
-1
-],
+  const partnerBirth =
+    document.getElementById("partnerBirth").value;
 
-[
-"❤️ 동거·사실혼 관계, 우리 두 사람의 사주가 너무 궁금해",
-300000,
-"사실혼·동거관계·계속 살아야 할지 헤어져야 할지 궁금증을 풀어드립니다",
-1
-],
+  const partnerGender =
+    document.getElementById("partnerGender").value;
 
-[
-"🏠 이사·부동산",
-50000,
-"어느 곳으로 가야 내가 잘 살아갈 수 있을까?",
-0
-],
+  if (!name || !birth || !gender) {
+    alert(
+      "Vui lòng nhập đầy đủ họ tên, ngày sinh và giới tính của bạn."
+    );
+    return;
+  }
 
-[
-"💼 사업·재물",
-50000,
-"조금만 더 신중하게 생각하자.",
-0
-],
+  const orderData = {
+    product: "LOVE_ORACLE_VIETNAM_550K",
+    amount: 550000,
+    currency: "VND",
+    customer: {
+      name: name,
+      birth: birth,
+      gender: gender
+    },
+    partner: {
+      name: partnerName,
+      birth: partnerBirth,
+      gender: partnerGender
+    }
+  };
 
-[
-"🎓 진로·학업",
-50000,
-"성인이 되어서도 후회하지 않을 선택은?",
-0
-],
+  paymentButton.disabled = true;
+  paymentButton.textContent = "Đang chuẩn bị thanh toán...";
 
-[
-"👔 취업·직업",
-50000,
-"이미 내가 선택한 직업이 든든한 울타리가 되어줄까?",
-0
-]
+  try {
+    const response = await fetch("/api/vn/payment/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(orderData)
+    });
 
-];
+    if (!response.ok) {
+      throw new Error("PAYMENT_NOT_READY");
+    }
 
+    const data = await response.json();
 
-let selected = null;
+    if (data.paymentUrl) {
+      window.location.href = data.paymentUrl;
+      return;
+    }
 
+    throw new Error("PAYMENT_URL_MISSING");
 
-const products =
-document.getElementById("products");
+  } catch (error) {
+    alert(
+      "Hệ thống thanh toán 550.000₫ hiện chưa được kết nối. " +
+      "Không có khoản tiền nào được thu ở bước này."
+    );
 
-const sum =
-document.getElementById("sum");
-
-const partner =
-document.getElementById("partner");
-
-
-products.innerHTML = data.map((x,i)=>`
-
-<article class="item">
-
-<h3>${x[0]}</h3>
-
-<div class="price">
-${x[1].toLocaleString()}원
-</div>
-
-<p>${x[2]}</p>
-
-<button
-class="pick"
-onclick="choose(${i},this)">
-이 상품 선택
-</button>
-
-</article>
-
-`).join("");
-
-
-function choose(i,button){
-
-document
-.querySelectorAll(".pick")
-.forEach(x=>x.classList.remove("on"));
-
-button.classList.add("on");
-
-selected=data[i];
-
-sum.innerHTML =
-"<b>선택 상품:</b> "
-+ selected[0]
-+ " · <b>"
-+ selected[1].toLocaleString()
-+ "원</b>";
-
-partner.style.display =
-selected[3] ? "block" : "none";
-
-document
-.getElementById("order")
-.scrollIntoView({
-behavior:"smooth"
+    paymentButton.disabled = false;
+    paymentButton.textContent =
+      "Tiếp tục thanh toán 550.000₫";
+  }
 });
 
+
+lookupButton.addEventListener("click", async function() {
+  const orderCode = orderCodeInput.value.trim();
+
+  if (!orderCode) {
+    alert("Vui lòng nhập mã đơn hàng.");
+    return;
+  }
+
+  lookupButton.disabled = true;
+  lookupButton.textContent = "Đang kiểm tra...";
+
+  try {
+    const response = await fetch(
+      "/api/vn/result/" + encodeURIComponent(orderCode),
+      {
+        method: "GET"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("ORDER_NOT_FOUND");
+    }
+
+    const data = await response.json();
+
+    if (data.paid === true && data.result) {
+      resultArea.style.display = "block";
+
+      resultArea.innerHTML =
+        "<h3>Kết quả của bạn</h3>" +
+        "<p>" + escapeHtml(data.result) + "</p>";
+
+      resultArea.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    } else {
+      alert(
+        "Chưa thể mở kết quả. " +
+        "Vui lòng kiểm tra mã đơn hàng hoặc trạng thái thanh toán."
+      );
+    }
+
+  } catch (error) {
+    alert(
+      "Hiện chưa thể tra cứu kết quả. " +
+      "Vui lòng kiểm tra lại mã đơn hàng."
+    );
+
+  } finally {
+    lookupButton.disabled = false;
+    lookupButton.textContent = "Xem lại kết quả";
+  }
+});
+
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
-
-
-function pay(){
-
-if(!selected){
-
-alert("먼저 상품을 선택해 주세요.");
-
-return;
-
-}
-
-
-const name =
-document.getElementById("name").value.trim();
-
-const birth =
-document.getElementById("birth").value.trim();
-
-const gender =
-document.getElementById("gender").value;
-
-
-if(!name || !birth || !gender){
-
-alert(
-"성함, 생년월일, 성별을 입력해 주세요."
-);
-
-return;
-
-}
-
-
-if(selected[3]){
-
-const pn =
-document.getElementById("pn").value.trim();
-
-const pb =
-document.getElementById("pb").value.trim();
-
-const pg =
-document.getElementById("pg").value;
-
-
-if(!pn || !pb || !pg){
-
-alert(
-"상대방 성함, 생년월일, 성별을 입력해 주세요."
-);
-
-return;
-
-}
-
-}
-
-
-const agree =
-document.getElementById("agree");
-
-
-if(!agree.checked){
-
-alert(
-"이용조건 및 취소·환불 안내를 확인해 주세요."
-);
-
-return;
-
-}
-
-
-/*
-================================================
-카카오페이 정식 결제 연동 자리
-================================================
-
-현재 사용하던 qr.kakaopay.com 주소는
-404 오류가 발생하므로 사용하지 않습니다.
-
-카카오페이 온라인 가맹점 승인이 완료되고
-정식 결제 API가 준비되면 이 부분에서
-app.py의 결제 준비 API를 호출하도록 연결합니다.
-
-예:
-
-fetch("/api/pay/ready", {
-    method:"POST",
-    headers:{
-        "Content-Type":"application/json"
-    },
-    body:JSON.stringify({
-        amount:selected[1],
-        product:selected[0],
-        name:name,
-        birth:birth,
-        gender:gender
-    })
-})
-
-================================================
-*/
-
-
-document.getElementById("mt").innerHTML =
-"<b>"
-+ selected[0]
-+ "</b><br>"
-+ selected[1].toLocaleString()
-+ "원";
-
-
-document
-.getElementById("m")
-.classList.add("show");
-
-}
-
-
-function closeModal(){
-
-document
-.getElementById("m")
-.classList.remove("show");
-
-}
-
 </script>
-
 </body>
 </html>
