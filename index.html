@@ -1,27 +1,321 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LOVE ORACLE THAILAND</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#3d142b;color:#222}.hero{background:linear-gradient(135deg,#851d3b,#c32f60);color:#fff;text-align:center;padding:60px 20px}.wrap{max-width:900px;margin:auto}.brand{font-size:22px;font-weight:800;color:#ffd3df}h1{font-size:46px}.yellow{color:#ffd449;font-size:22px;font-weight:bold}.box{background:#fff;color:#333;padding:22px;border-radius:18px;max-width:680px;margin:25px auto}.light{background:#fff8f9;padding:55px 20px}.light h2{text-align:center;font-size:34px}.card{max-width:760px;margin:15px auto;padding:22px;background:white;border-radius:14px;border-left:5px solid #c52f5c}.card h3{color:#a9234b}.deep{padding:55px 20px;color:white;background:linear-gradient(135deg,#21171c,#772850)}.deep>div>h2{text-align:center;font-size:34px}.form{max-width:520px;margin:30px auto;background:#fff;color:#222;padding:32px;border-radius:20px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-weight:bold;margin:14px 0 6px}input,select{width:100%;padding:14px;border:1px solid #ccc;border-radius:9px;font-size:16px}.price{text-align:center;margin:28px 0}.price strong{display:block;font-size:42px;color:#e0aa14}.notice{background:#fff1f4;padding:15px;border-radius:10px}.pay,.lookup{width:100%;border:0;border-radius:11px;padding:16px;background:#ed376e;color:white;font-weight:bold;font-size:18px}.locked{margin-top:25px;border:1px dashed #bbb;padding:20px;border-radius:12px;text-align:center}hr{border:0;border-top:1px solid #ddd;margin:25px 0}@media(max-width:600px){h1{font-size:36px}.row{grid-template-columns:1fr}}
-</style></head><body>
-<section class="hero"><div class="wrap"><div class="brand">♥ LOVE ORACLE THAILAND</div><p>ความรัก · คู่ครอง · ดวงชะตา · ชีวิตคู่</p><h1>คนที่คุณกำลังคิดถึง<br>คือคนที่เหมาะจะเดินไปกับคุณจริงหรือ?</h1><p class="yellow">ก่อนตัดสินใจเรื่องความรัก ลองมองความสัมพันธ์ให้ลึกขึ้นอีกนิด</p><div class="box">ความรักไม่ได้มีแค่คำว่า “รักหรือไม่รัก” แต่ยังมีนิสัย จังหวะชีวิต ความเข้าใจ และอนาคตที่ทั้งสองคนต้องสร้างร่วมกัน</div></div></section>
-<section class="light"><h2>5 เรื่องที่ควรคิดให้ชัดก่อนตัดสินใจ</h2>
-<div class="card"><h3>1. เขาใส่ใจและให้เกียรติคุณจริงหรือไม่?</h3><p>ดูจากการกระทำ การรับฟัง ความรับผิดชอบ และวิธีที่เขาปฏิบัติต่อคุณในชีวิตจริง</p></div>
-<div class="card"><h3>2. คุณสองคนคุยเรื่องอนาคตกันได้หรือไม่?</h3><p>การแต่งงาน งาน ที่อยู่อาศัย การเงิน ครอบครัว และแผนชีวิตควรพูดกันอย่างตรงไปตรงมา</p></div>
-<div class="card"><h3>3. ครอบครัวและสภาพแวดล้อมของทั้งสองฝ่ายเป็นอย่างไร?</h3><p>การเข้าใจครอบครัว วัฒนธรรม และความคาดหวังช่วยให้มองชีวิตคู่ได้ชัดขึ้น</p></div>
-<div class="card"><h3>4. เมื่อมีปัญหา คุณสองคนแก้ไขร่วมกันอย่างไร?</h3><p>สังเกตว่าทั้งสองฝ่ายพูดคุย รับผิดชอบ และหาทางออกร่วมกันได้หรือไม่</p></div>
-<div class="card"><h3>5. คุณจะมีความสุขเมื่ออยู่กับคนนี้ในชีวิตจริงหรือไม่?</h3><p>คิดถึงชีวิตประจำวันที่ต้องอยู่ร่วมกันจริง ๆ ไม่ใช่เพียงช่วงเวลาที่ทุกอย่างกำลังดี</p></div></section>
-<section class="deep"><div class="wrap"><h2>คำวิเคราะห์เชิงลึกสำหรับคุณโดยเฉพาะ</h2>
-<form class="form" id="f"><h2>กรอกข้อมูลเพื่อเริ่มต้น</h2><p>กรุณากรอกข้อมูลให้ถูกต้อง</p><h3>ข้อมูลของคุณ</h3>
-<div class="row"><div><label>ชื่อ *</label><input id="n1" required></div><div><label>วันเกิด *</label><input id="b1" type="date" required></div></div><label>เพศ *</label><select id="g1" required><option value="">เลือกเพศ</option><option>ชาย</option><option>หญิง</option><option>อื่น ๆ</option></select><hr>
-<h3>ข้อมูลของคนที่คุณกำลังคิดถึง</h3><div class="row"><div><label>ชื่อ</label><input id="n2"></div><div><label>วันเกิด</label><input id="b2" type="date"></div></div><label>เพศ</label><select id="g2"><option value="">เลือกเพศ</option><option>ชาย</option><option>หญิง</option><option>อื่น ๆ</option></select>
-<div class="price">คำวิเคราะห์เชิงลึก<strong>550,000₫</strong>ชำระครั้งเดียว · ไม่มีการต่ออายุอัตโนมัติ</div>
-<div class="notice"><b>กรุณาตรวจสอบข้อมูลก่อนชำระเงิน</b><br>ผลการวิเคราะห์จะเปิดหลังจากระบบยืนยันการชำระเงินสำเร็จ</div><br>
-<button class="pay" type="submit" id="pay">ดำเนินการชำระเงิน 550,000₫</button>
-<div class="locked"><h3>ผลการวิเคราะห์ของคุณ</h3>🔒 จะเปิดหลังจากระบบยืนยันการชำระเงินสำเร็จ</div><hr>
-<h3>ดูผลที่ซื้อแล้ว</h3><p>กรอกรหัสคำสั่งซื้อที่ได้รับหลังชำระเงิน</p><input id="code" placeholder="รหัสคำสั่งซื้อ"><br><br><button type="button" class="lookup" onclick="lookup()">ดูผลอีกครั้ง</button></form></div></section>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2027년 새해, 내 사주에는 어떤 길이 열릴까? | 러브 오라클</title>
+<meta name="description" content="생년월일시로 보는 2027 정미년 사주·명리 풀이. 결제 즉시 풀이 결과를 받아 보세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbf7ef; --card:#fff; --line:#e5dbcf; --ink:#302925; --muted:#6d625b;
+  --brown:#60463a; --seal:#a3402a; --gold:#f4cf00; --soft:#f3ebe0;
+  --serif:"Noto Serif KR","Batang",serif; --sans:"Noto Sans KR","Malgun Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:16px}
+.w{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:20px 40px}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;margin:0}
+.test{background:#fff4c2;border:1px solid #e8cf61;border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:14px}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 20px;text-align:center;margin-bottom:24px}
+.hero .brand{font-weight:700;color:var(--seal);letter-spacing:.04em}
+.hero h1{font-size:clamp(24px,5vw,34px);color:#653d31;margin:10px 0}
+.hero p{margin:0;color:var(--muted)}
+.steps{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:14px}
+.steps span{background:var(--soft);border-radius:999px;padding:4px 12px}
+h2.sec{font-size:22px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.item.on{border-color:var(--brown);box-shadow:0 0 0 2px var(--brown) inset}
+.item h3{font-size:17px}
+.item .price{font-size:22px;font-weight:700;color:#7d3f2d;font-variant-numeric:tabular-nums}
+.item p{margin:0;color:var(--muted);font-size:14px;flex:1}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:12px;font-weight:700;width:100%}
+.pick{background:#eee4d8;color:var(--ink)}
+.item.on .pick{background:var(--brown);color:#fff}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:20px}
+#sum{background:var(--soft);border-radius:10px;padding:10px 14px;margin:10px 0 14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.f{display:flex;flex-direction:column;gap:4px;font-weight:500;font-size:15px}
+input,select{width:100%;padding:11px;border:1px solid #d8cec2;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+.hint{font-size:13px;color:var(--muted);font-weight:400}
+.timewrap{display:flex;gap:10px;align-items:center}
+.timewrap input[type=time]{flex:1}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin-top:12px}
+.chk input{width:18px;height:18px;margin-top:3px;flex:none}
+#partner{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:12px}
+.person{display:flex;flex-direction:column;gap:12px}
+.pay{background:var(--gold);color:#2b2100;margin-top:16px;font-size:17px;padding:15px}
+.pay[disabled]{opacity:.55;cursor:not-allowed}
+.err{color:#b3261e;font-size:14px;margin:10px 0 0}
+.admin{margin-top:14px;padding:12px;border:1px dashed #b9a48f;border-radius:10px;display:flex;flex-direction:column;gap:8px}
+.admin button{background:var(--brown);color:#fff}
+details{padding:10px 0;border-bottom:1px solid #eee}
+summary{font-weight:700;cursor:pointer}
+details p{margin:8px 0;color:#4d443e;font-size:15px}
+footer{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:13px;color:#4d443e}
+@media(max-width:700px){.grid,.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="w">
+
+<div class="test" id="testBanner" hidden>🧪 테스트 결제 모드입니다. 결제 화면이 열려도 실제 돈은 빠져나가지 않습니다.</div>
+
+<section class="hero">
+  <div class="brand">🔮 러브 오라클 · 2027 신년 사주보감</div>
+  <h1>2027년 새해, 내 사주에는 어떤 길이 열릴까?</h1>
+  <p>생년월일과 태어난 시간을 바탕으로 전통 명리의 관점에서 인연·이동·사업·진로의 흐름을 풀어드립니다.</p>
+  <div class="steps"><span>① 풀이 선택</span><span>② 정보 입력</span><span>③ 결제</span><span>④ 바로 결과 확인</span></div>
+</section>
+
+<h2 class="sec">원하는 풀이를 선택하세요</h2>
+<div class="grid" id="products"><p>상품을 불러오는 중입니다…</p></div>
+
+<section class="box" id="order">
+  <h2 class="sec">고객 정보 입력</h2>
+  <div id="sum">먼저 위에서 풀이를 선택해 주세요.</div>
+
+  <div class="person" id="me"></div>
+
+  <div id="partner" hidden>
+    <h3>상대방 정보</h3>
+    <div class="person" id="you"></div>
+  </div>
+
+  <label class="chk"><input id="agree" type="checkbox">
+    <span>이용조건, 취소·환불 안내, 개인정보 수집·이용(이름·성별·생년월일시, 풀이 제공 목적)에 동의합니다.</span></label>
+
+  <p class="err" id="err" role="alert" hidden></p>
+  <button class="pay" id="payBtn" type="button">결제하고 풀이 받기</button>
+  <p class="hint" id="payHint">안전한 결제대행사 화면에서 결제합니다. 결제가 끝나면 바로 풀이 결과 화면으로 이동합니다.</p>
+
+  <div class="admin" id="adminBox" hidden>
+    <b>사장님 전용 무료 미리보기</b>
+    <input id="adminKey" type="password" placeholder="관리자 비밀번호" autocomplete="off">
+    <button type="button" id="previewBtn">결제 없이 풀이 미리보기</button>
+  </div>
+</section>
+
+<section class="box">
+  <h2 class="sec">서비스 이용 안내</h2>
+  <details open>
+    <summary>서비스 제공 방식 및 시점</summary>
+    <p>러브 오라클은 고객이 입력한 정보를 바탕으로 사주·명리학적 관점의 풀이 결과를 제공하는 온라인 디지털 콘텐츠 서비스입니다.</p>
+    <p>결제 승인이 완료되면 즉시 결과 화면에서 풀이를 확인할 수 있습니다. 결과 화면의 주소(링크)를 저장해 두면 언제든 다시 볼 수 있습니다.</p>
+  </details>
+  <details>
+    <summary>취소·환불 안내</summary>
+    <p>결제 후 아직 디지털 풀이 결과의 제공이 시작되지 않은 주문은 고객센터를 통해 취소·환불을 요청할 수 있습니다.</p>
+    <p>결과 제공이 시작된 이후에는 디지털 콘텐츠의 특성 및 관련 법령에 따라 단순 변심에 의한 청약철회가 제한될 수 있습니다.</p>
+    <p>시스템 오류, 결제 상품과 다른 서비스 제공 등 판매자 귀책사유가 확인되는 경우 재제공 또는 환불 등 필요한 조치를 합니다.</p>
+  </details>
+  <details>
+    <summary>개인정보 수집·이용 안내</summary>
+    <p>수집 항목: 이름(별칭 가능), 성별, 생년월일, 출생시간 (궁합 상품은 상대방 정보 포함)</p>
+    <p>이용 목적: 사주·명리 풀이 결과 생성 및 제공</p>
+    <p>보관: 입력 정보는 서버에 따로 저장하지 않으며, 암호화된 결과 링크 안에만 담깁니다. 결제 정보는 결제대행사(카카오페이 등)가 관련 법령에 따라 보관합니다.</p>
+    <p>상대방 정보는 상대방의 동의를 받은 경우에만 입력해 주세요.</p>
+  </details>
+  <details>
+    <summary>사주·명리 풀이 이용조건</summary>
+    <p>본 서비스는 전통 명리학적 해석을 바탕으로 제공되는 참고용 디지털 콘텐츠입니다.</p>
+    <p>미래 사건, 재산상 이익, 부동산 가격, 사업 성공, 취업·합격 또는 인간관계의 결과를 보장하지 않습니다.</p>
+    <p>중요한 재산·직업·법률·의료 및 개인적 결정은 실제 상황과 관련 전문가의 조언 등을 함께 고려하여 이용자가 판단해야 합니다.</p>
+  </details>
+</section>
+
+<footer>
+  <b>러브 오라클 (Lover Oracle)</b><br>
+  대표자: 김태현 · 사업자등록번호: 137-32-01904<br>
+  통신판매업 신고번호: 신고 후 기재<br>
+  사업장 소재지: 경기도 안산시 단원구 대부황금로 1153(대부북동)<br>
+  고객센터: 010-5088-9989 · 상담시간: 평일 09:00~18:00 · 서비스 이용시간: 24시간 연중무휴<br>
+  <span class="hint">※ 시스템 점검 또는 장애 발생 시 서비스 이용이 일시 제한될 수 있습니다.</span><br>
+  온라인 사주·운세 분석 디지털 콘텐츠 · © 2026 Lover Oracle
+</footer>
+</div>
+
 <script>
-f.onsubmit=async(e)=>{e.preventDefault();pay.disabled=true;pay.textContent="กำลังเตรียมการชำระเงิน...";
-let x={name:n1.value,birth:b1.value,gender:g1.value,partner_name:n2.value,partner_birth:b2.value,partner_gender:g2.value,amount:550000,currency:"VND",market:"TH"};
-try{let r=await fetch("/api/create-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(x)}),d=await r.json();if(r.ok&&(d.payment_url||d.url)){location.href=d.payment_url||d.url;return}alert(d.message||"ระบบชำระเงินยังไม่ได้เชื่อมต่อ")}catch(z){alert("ระบบชำระเงินยังไม่ได้เชื่อมต่อ")}pay.disabled=false;pay.textContent="ดำเนินการชำระเงิน 550,000₫"};
-async function lookup(){if(!code.value.trim()){alert("กรุณากรอกรหัสคำสั่งซื้อ");return}try{let r=await fetch("/api/result/"+encodeURIComponent(code.value.trim())),d=await r.json();alert(d.result||d.message||"ไม่พบผลลัพธ์")}catch(e){alert("ยังไม่สามารถตรวจสอบผลได้")}}
-</script></body></html>
+(function(){
+  "use strict";
+  var cfg = null, selected = null;
+  var $ = function(id){ return document.getElementById(id); };
+
+  function personFields(prefix){
+    return '' +
+      '<div class="row">' +
+        '<label class="f">성함<input id="'+prefix+'name" maxlength="20" placeholder="예: 홍길동" autocomplete="off"></label>' +
+        '<label class="f">성별<select id="'+prefix+'gender"><option value="">선택</option><option value="여성">여성</option><option value="남성">남성</option></select></label>' +
+      '</div>' +
+      '<div class="row">' +
+        '<label class="f">달력 기준<select id="'+prefix+'cal"><option value="solar">양력</option><option value="lunar">음력</option><option value="leap">음력 (윤달)</option></select></label>' +
+        '<label class="f">생년월일<input id="'+prefix+'birth" inputmode="numeric" placeholder="예: 1970-10-01" autocomplete="off"></label>' +
+      '</div>' +
+      '<label class="f">출생시간 <span class="hint">정확할수록 풀이가 정확해집니다</span>' +
+        '<span class="timewrap"><input id="'+prefix+'time" type="time"><label class="chk" style="margin:0"><input id="'+prefix+'unknown" type="checkbox">모름</label></span>' +
+      '</label>';
+  }
+  $("me").innerHTML = personFields("a_");
+  $("you").innerHTML = personFields("b_");
+  ["a_","b_"].forEach(function(p){
+    $(p+"unknown").addEventListener("change", function(){
+      $(p+"time").disabled = this.checked;
+      if (this.checked) $(p+"time").value = "";
+    });
+  });
+
+  function readPerson(p){
+    var cal = $(p+"cal").value;
+    return {
+      name: $(p+"name").value.trim(),
+      gender: $(p+"gender").value,
+      cal: cal === "solar" ? "solar" : "lunar",
+      leap: cal === "leap",
+      birth: $(p+"birth").value.trim(),
+      time: $(p+"unknown").checked ? "모름" : $(p+"time").value
+    };
+  }
+
+  function showErr(msg){ var e=$("err"); e.textContent = msg || ""; e.hidden = !msg; }
+  function won(n){ return Number(n).toLocaleString("ko-KR") + "원"; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  function renderProducts(){
+    $("products").innerHTML = cfg.products.map(function(x, i){
+      return '<article class="item" id="p'+i+'"><h3>'+esc(x.icon+" "+x.name)+'</h3>' +
+        '<div class="price">'+won(x.price)+'</div><p>'+esc(x.desc)+'</p>' +
+        '<button class="pick" type="button" data-i="'+i+'">이 풀이 선택</button></article>';
+    }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll(".pick"), function(b){
+      b.addEventListener("click", function(){ choose(+b.getAttribute("data-i")); });
+    });
+  }
+
+  function choose(i){
+    selected = cfg.products[i];
+    Array.prototype.forEach.call(document.querySelectorAll(".item"), function(el){ el.classList.remove("on"); });
+    $("p"+i).classList.add("on");
+    $("sum").innerHTML = "<b>선택한 풀이:</b> " + esc(selected.name) + " · <b>" + won(selected.price) + "</b>";
+    $("partner").hidden = !selected.partner;
+    $("payBtn").textContent = payLabel();
+    showErr("");
+    $("order").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  }
+
+  function orderBody(){
+    return {
+      product: selected ? selected.id : "",
+      person: readPerson("a_"),
+      partner: selected && selected.partner ? readPerson("b_") : null,
+      agree: $("agree").checked
+    };
+  }
+
+  function precheck(){
+    if (!selected){ showErr("먼저 풀이 상품을 선택해 주세요."); return false; }
+    var list = selected.partner ? ["a_","b_"] : ["a_"];
+    for (var k=0;k<list.length;k++){
+      var p = list[k], who = p === "a_" ? "본인" : "상대방";
+      if (!$(p+"name").value.trim()) { showErr(who+" 성함을 입력해 주세요."); $(p+"name").focus(); return false; }
+      if (!$(p+"gender").value) { showErr(who+" 성별을 선택해 주세요."); $(p+"gender").focus(); return false; }
+      if (!$(p+"birth").value.trim()) { showErr(who+" 생년월일을 입력해 주세요."); $(p+"birth").focus(); return false; }
+      if (!$(p+"unknown").checked && !$(p+"time").value) { showErr(who+" 출생시간을 입력하거나 '모름'에 체크해 주세요."); $(p+"time").focus(); return false; }
+    }
+    if (!$("agree").checked){ showErr("이용조건 및 안내에 동의해 주세요."); return false; }
+    showErr(""); return true;
+  }
+
+  function post(url, body){
+    return fetch(url, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)})
+      .then(function(r){ return r.json().then(function(d){ if (!r.ok || d.status !== "success") throw new Error(d.message || "요청을 처리하지 못했습니다."); return d; }); });
+  }
+
+  function payLabel(){
+    var base = selected ? won(selected.price) + " " : "";
+    return cfg && cfg.provider === "kakao" ? base + "카카오페이로 결제하기" : base + "결제하고 풀이 받기";
+  }
+
+  function loadToss(){
+    return new Promise(function(ok, no){
+      if (typeof TossPayments !== "undefined") return ok();
+      var s = document.createElement("script");
+      s.src = "https://js.tosspayments.com/v2/standard";
+      s.onload = ok; s.onerror = function(){ no(new Error("결제 모듈을 불러오지 못했습니다. 새로고침해 주세요.")); };
+      document.head.appendChild(s);
+    });
+  }
+
+  function isMobile(){ return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent); }
+
+  $("payBtn").addEventListener("click", function(){
+    if (!precheck()) return;
+    if (!cfg || !cfg.ready){
+      showErr("현재 결제 서비스 준비 중입니다. 잠시 후 다시 이용해 주세요.");
+      return;
+    }
+    var btn = this; btn.disabled = true; btn.textContent = "결제 준비 중…";
+    var body = orderBody(); body.origin = location.origin;
+    var leaving = false;
+    post("/api/kr/order", body).then(function(o){
+      if (o.provider === "kakao"){
+        try { sessionStorage.setItem("lo_tid", o.tid); } catch(e){}
+        var url = isMobile() ? (o.redirect_mobile || o.redirect_pc) : (o.redirect_pc || o.redirect_mobile);
+        if (!url) throw new Error("카카오페이 결제 화면 주소를 받지 못했습니다.");
+        leaving = true;
+        location.href = url;
+        return;
+      }
+      return loadToss().then(function(){
+        var payment = TossPayments(cfg.client_key).payment({customerKey: o.customer_key});
+        return payment.requestPayment({
+          method: "CARD",
+          amount: {currency: "KRW", value: o.amount},
+          orderId: o.order_id,
+          orderName: o.order_name,
+          customerName: $("a_name").value.trim(),
+          successUrl: location.origin + "/kr/success/" + o.token,
+          failUrl: location.origin + "/kr/fail"
+        });
+      });
+    }).catch(function(e){
+      var msg = (e && e.code === "USER_CANCEL") ? "결제를 취소하셨습니다." : (e && e.message) || "결제를 시작하지 못했습니다.";
+      showErr(msg);
+    }).then(function(){
+      if (leaving) return;
+      btn.disabled = false;
+      btn.textContent = payLabel();
+    });
+  });
+
+  $("previewBtn").addEventListener("click", function(){
+    if (!precheck()) return;
+    var body = orderBody(); body.admin_key = $("adminKey").value;
+    var btn = this; btn.disabled = true;
+    post("/api/kr/preview", body).then(function(d){
+      location.href = "/kr/r/" + d.token;
+    }).catch(function(e){ showErr(e.message); }).then(function(){ btn.disabled = false; });
+  });
+
+  fetch("/api/kr/config").then(function(r){ return r.json(); }).then(function(c){
+    cfg = c;
+    renderProducts();
+    $("testBanner").hidden = !c.test_mode;
+    if (c.provider === "kakao"){
+      $("payHint").textContent = "카카오페이로 결제합니다. 휴대폰에서는 카카오톡이 열리고, PC에서는 QR코드를 휴대폰으로 찍어 결제합니다. 결제가 끝나면 바로 풀이 결과 화면으로 이동합니다.";
+      $("payBtn").textContent = payLabel();
+    }
+    if (!c.ready){
+      $("payHint").textContent = "현재 결제 서비스 준비 중입니다. 결제 연동이 완료되면 바로 이용하실 수 있습니다.";
+    }
+    $("adminBox").hidden = !(c.preview && /[?&]admin\b/.test(location.search));
+  }).catch(function(){
+    $("products").innerHTML = "<p>상품 정보를 불러오지 못했습니다. 새로고침해 주세요.</p>";
+  });
+})();
+</script>
+</body>
+</html>
