@@ -266,7 +266,7 @@ footer{margin-top:20px;background:var(--card);border:1px solid var(--line);borde
     var leaving = false;
     post("/api/kr/order", body).then(function(o){
       if (o.provider === "kakao"){
-        try { sessionStorage.setItem("lo_tid", o.tid); } catch(e){}
+        try { sessionStorage.setItem("lo_tid", o.tid); sessionStorage.setItem("lo_k_" + o.short, o.token); } catch(e){}
         var url = isMobile() ? (o.redirect_mobile || o.redirect_pc) : (o.redirect_pc || o.redirect_mobile);
         if (!url) throw new Error("카카오페이 결제 화면 주소를 받지 못했습니다.");
         leaving = true;

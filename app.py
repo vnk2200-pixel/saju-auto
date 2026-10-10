@@ -442,6 +442,26 @@ def remember_tid(order_id, tid):
     _kakao_tids[order_id] = (now, tid)
 
 
+# 카카오페이 approval_url 은 255자 이하여야 하므로, 긴 주문 토큰 대신 짧은 코드를 씁니다.
+_kakao_orders = {}
+
+
+def remember_order(code, token):
+    now = time.time()
+    for key in [k for k, v in _kakao_orders.items() if now - v[0] > 3600]:
+        _kakao_orders.pop(key, None)
+    _kakao_orders[code] = (now, token)
+
+
+def resolve_order_token(value, backup=""):
+    """짧은 코드면 서버에 보관한 주문 토큰으로 바꾸고, 없으면 브라우저 보관본(backup)을 사용"""
+    if value in _kakao_orders:
+        return _kakao_orders[value][1]
+    if backup:
+        return backup
+    return value
+
+
 _status_cache = {}
 
 
@@ -875,6 +895,8 @@ class SajuHandler(BaseHTTPRequestHandler):
 
         if PAY_PROVIDER == "kakao":
             origin = self.site_origin(data)
+            short = "K" + secrets.token_hex(8)
+            remember_order(short, token)
             status, ready = kakao_request("/online/v1/payment/ready", {
                 "cid": KAKAO_CID,
                 "partner_order_id": order_id,
@@ -883,7 +905,7 @@ class SajuHandler(BaseHTTPRequestHandler):
                 "quantity": 1,
                 "total_amount": product["price"],
                 "tax_free_amount": 0,
-                "approval_url": origin + "/kr/kakao/ok/" + token,
+                "approval_url": origin + "/kr/kakao/ok/" + short,
                 "cancel_url": origin + "/kr/fail?code=USER_CANCEL&orderId=" + order_id,
                 "fail_url": origin + "/kr/fail?code=KAKAO_FAIL&orderId=" + order_id,
             })
@@ -898,6 +920,8 @@ class SajuHandler(BaseHTTPRequestHandler):
                 "order_id": order_id,
                 "amount": product["price"],
                 "tid": ready["tid"],
+                "short": short,
+                "token": token,
                 "redirect_pc": ready.get("next_redirect_pc_url", ""),
                 "redirect_mobile": ready.get("next_redirect_mobile_url", ""),
             })
@@ -954,7 +978,7 @@ class SajuHandler(BaseHTTPRequestHandler):
         self.send_json({"status": "success", "token": result_token, "result": reading, "receipt_url": receipt})
 
     def kr_kakao_approve(self, data):
-        order = unseal(str(data.get("token", "")))
+        order = unseal(resolve_order_token(str(data.get("token", "")), str(data.get("backup", ""))))
         pg_token = str(data.get("pg_token", "")).strip()
         if not order or order.get("t") != "order":
             self.kr_error("주문 정보를 확인할 수 없습니다. 고객센터로 문의해 주세요.", 400, "BAD_TOKEN")

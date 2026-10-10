@@ -187,8 +187,9 @@ td:nth-child(3){white-space:nowrap;font-weight:700}
     var kKey = "lo_done_" + kToken.slice(0, 40), kSaved = null, tid = "";
     try { kSaved = sessionStorage.getItem(kKey); } catch(e){}
     if (kSaved){ location.replace("/kr/r/" + kSaved); return; }
-    try { tid = sessionStorage.getItem("lo_tid") || ""; } catch(e){}
-    post("/api/kr/kakao-approve", {token: kToken, pg_token: q("pg_token"), tid: tid})
+    var backup = "";
+    try { tid = sessionStorage.getItem("lo_tid") || ""; backup = sessionStorage.getItem("lo_k_" + kToken) || ""; } catch(e){}
+    post("/api/kr/kakao-approve", {token: kToken, pg_token: q("pg_token"), tid: tid, backup: backup})
       .then(function(d){
         try { sessionStorage.setItem(kKey, d.token); } catch(e){}
         history.replaceState(null, "", "/kr/r/" + d.token);
