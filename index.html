@@ -57,6 +57,7 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid 
 details{padding:10px 0;border-bottom:1px solid #eee}
 summary{font-weight:700;cursor:pointer}
 details p{margin:8px 0;color:#4d443e;font-size:15px}
+.trust{list-style:none;margin:14px 0 4px;padding:12px 14px;background:#fff8ec;border:1px solid var(--line);border-radius:12px;font-size:14px;line-height:1.7}
 footer{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:13px;color:#4d443e}
 @media(max-width:700px){.grid,.row{grid-template-columns:1fr}}
 </style>
@@ -91,6 +92,11 @@ footer{margin-top:20px;background:var(--card);border:1px solid var(--line);borde
     <span>만 19세 이상이며, 이용조건, 취소·환불 안내, 개인정보 수집·이용(이름·성별·생년월일시, 풀이 제공 목적)에 동의합니다.</span></label>
 
   <p class="err" id="err" role="alert" hidden></p>
+  <ul class="trust">
+    <li>✔ 결제가 끝나면 이 화면에서 바로 풀이를 볼 수 있어요</li>
+    <li>✔ 카카오페이 안전결제 (카드번호 입력 없음)</li>
+    <li>✔ 풀이 화면이 열리지 않으면 확인 후 전액 환불해 드려요</li>
+  </ul>
   <button class="pay" id="payBtn" type="button">결제하고 풀이 받기</button>
   <p class="hint" id="payHint">안전한 결제대행사 화면에서 결제합니다. 결제가 끝나면 바로 풀이 결과 화면으로 이동합니다.</p>
 
