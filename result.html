@@ -131,7 +131,7 @@ td:nth-child(3){white-space:nowrap;font-weight:700}
 
   function render(res, token, receipt){
     var link = location.origin + "/kr/r/" + token;
-    var h = '<div class="card top"><div class="brand">🔮 러브 오라클 · 2027 신년 사주보감</div>' +
+    var h = '<div class="card top"><div class="brand">🔮 러브 오라클 · 인연의 때를 읽다</div>' +
       '<h1>'+esc(res.product.name)+'</h1>' +
       '<div class="muted">'+(res.order_id && res.order_id !== "PREVIEW" ? '주문번호 '+esc(res.order_id) : '')+'</div>' +
       (res.preview ? '<div class="preview">사장님 미리보기 화면입니다. 결제 없이 생성된 풀이입니다.</div>' : '') +
