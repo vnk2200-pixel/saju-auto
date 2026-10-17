@@ -58,6 +58,16 @@ details{padding:10px 0;border-bottom:1px solid #eee}
 summary{font-weight:700;cursor:pointer}
 details p{margin:8px 0;color:#4d443e;font-size:15px}
 .trust{list-style:none;margin:14px 0 4px;padding:12px 14px;background:#fff8ec;border:1px solid var(--line);border-radius:12px;font-size:14px;line-height:1.7}
+.free{background:var(--card);border:2px solid var(--gold);border-radius:18px;padding:20px;margin:0 0 24px}
+.free h2{margin:0 0 4px;font-size:20px}
+.free .sub{margin:0 0 12px;color:var(--muted);font-size:14px}
+.freebtn{background:var(--gold);color:#2b2100;margin-top:12px;font-size:17px;padding:15px}
+.taste{margin-top:16px;border-top:1px dashed var(--line);padding-top:16px}
+.taste h3{margin:0 0 8px;font-size:18px}
+.taste p{line-height:1.75;margin:0 0 10px}
+.lock{list-style:none;margin:12px 0 0;padding:12px 14px;background:#f4efe8;border-radius:12px;line-height:1.9;color:#5b5049}
+.lock li:before{content:"🔒 "}
+.blur{filter:blur(4px);user-select:none}
 footer{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:13px;color:#4d443e}
 @media(max-width:700px){.grid,.row{grid-template-columns:1fr}}
 </style>
@@ -71,7 +81,18 @@ footer{margin-top:20px;background:var(--card);border:1px solid var(--line);borde
   <div class="brand">🔮 러브 오라클 · 인연의 때를 읽다</div>
   <h1>기다려야 할까, 놓아야 할까?<br>우리 사이의 '때'</h1>
   <p>안 맞는 게 아니라, 때가 엇갈린 걸지도 몰라요. 생년월일과 태어난 시간으로 인연의 흐름과 다가오는 때를 전통 명리의 관점에서 풀어드립니다.</p>
-  <div class="steps"><span>① 풀이 선택</span><span>② 정보 입력</span><span>③ 결제</span><span>④ 바로 결과 확인</span></div>
+  <div class="steps"><span>① 무료로 먼저 보기</span><span>② 더 궁금하면 이어 보기</span><span>③ 결제 즉시 결과 확인</span></div>
+</section>
+
+<section class="free" id="freeBox">
+  <h2>🔮 무료로 먼저 보기</h2>
+  <p class="sub">생년월일만 넣으면 나의 연애 성향과 인연의 기운을 바로 보여 드려요. 결제 없이 무료예요.</p>
+  <div id="fme"></div>
+  <label class="chk"><input id="fagree" type="checkbox">
+    <span>만 19세 이상이며, 풀이 계산을 위한 정보(이름·성별·생년월일시) 이용에 동의합니다. 무료 풀이 정보는 저장하지 않습니다.</span></label>
+  <p class="err" id="ferr" role="alert" hidden></p>
+  <button class="freebtn" id="freeBtn" type="button">무료로 내 인연 보기</button>
+  <div class="taste" id="taste" hidden></div>
 </section>
 
 <h2 class="sec">원하는 풀이를 선택하세요</h2>
@@ -172,7 +193,8 @@ footer{margin-top:20px;background:var(--card);border:1px solid var(--line);borde
   }
   $("me").innerHTML = personFields("a_");
   $("you").innerHTML = personFields("b_");
-  ["a_","b_"].forEach(function(p){
+  $("fme").innerHTML = personFields("f_");
+  ["a_","b_","f_"].forEach(function(p){
     $(p+"unknown").addEventListener("change", function(){
       $(p+"time").disabled = this.checked;
       if (this.checked) $(p+"time").value = "";
@@ -300,6 +322,37 @@ footer{margin-top:20px;background:var(--card);border:1px solid var(--line);borde
       btn.disabled = false;
       btn.textContent = payLabel();
     });
+  });
+
+
+  function freeErr(msg){ var e=$("ferr"); e.textContent = msg || ""; e.hidden = !msg; }
+
+  $("freeBtn").addEventListener("click", function(){
+    var p = "f_";
+    if (!$(p+"name").value.trim()) { freeErr("성함(또는 별명)을 입력해 주세요."); $(p+"name").focus(); return; }
+    if (!$(p+"gender").value) { freeErr("성별을 선택해 주세요."); $(p+"gender").focus(); return; }
+    if (!$(p+"birth").value.trim()) { freeErr("생년월일을 입력해 주세요."); $(p+"birth").focus(); return; }
+    if (!$(p+"unknown").checked && !$(p+"time").value) { freeErr("출생시간을 입력하거나 '모름'에 체크해 주세요."); $(p+"time").focus(); return; }
+    if (!$("fagree").checked) { freeErr("만 19세 이상 여부와 정보 이용에 동의해 주세요."); return; }
+    freeErr("");
+    var btn = this; btn.disabled = true; btn.textContent = "풀이 중…";
+    post("/api/kr/free", {person: readPerson(p), agree: true}).then(function(d){
+      var t = d.taste;
+      var html = '<h3>'+esc(t.title)+'</h3>' + t.paras.map(function(x){ return '<p>'+esc(x)+'</p>'; }).join("") +
+        '<p><b>'+esc(t.name)+'님의 인연 흐름에서 더 볼 수 있는 이야기</b></p>' +
+        '<ul class="lock">' + t.locked.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul>' +
+        (t.good_count ? '<p class="blur" aria-hidden="true">인연의 기운이 좋은 달은 ○월, ○○월입니다. 이 시기에는…</p>' : '') +
+        '<button class="freebtn" id="moreBtn" type="button">990원으로 이어서 보기</button>' +
+        '<p class="hint">카카오페이로 결제하면 바로 이 화면에서 전체 풀이가 열려요.</p>';
+      $("taste").innerHTML = html; $("taste").hidden = false;
+      $("taste").scrollIntoView({behavior:"smooth", block:"start"});
+      $("moreBtn").addEventListener("click", function(){
+        ["name","gender","cal","birth","time"].forEach(function(k){ $("a_"+k).value = $("f_"+k).value; });
+        $("a_unknown").checked = $("f_unknown").checked; $("a_time").disabled = $("f_unknown").checked;
+        var i = 0; cfg.products.forEach(function(x, j){ if (x.id === "love-first") i = j; });
+        choose(i);
+      });
+    }).catch(function(e){ freeErr(e.message); }).then(function(){ btn.disabled = false; btn.textContent = "무료로 내 인연 보기"; });
   });
 
   $("previewBtn").addEventListener("click", function(){

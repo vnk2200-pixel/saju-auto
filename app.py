@@ -859,6 +859,8 @@ class SajuHandler(BaseHTTPRequestHandler):
                 self.kr_kakao_approve(data)
             elif path == "/api/kr/preview":
                 self.kr_preview(data)
+            elif path == "/api/kr/free":
+                self.kr_free(data)
             else:
                 self.kr_error("API endpoint not found.", 404)
         except BadInput as error:
@@ -1031,6 +1033,13 @@ class SajuHandler(BaseHTTPRequestHandler):
         reading["order_id"] = sealed.get("oid", "")
         reading["preview"] = bool(sealed.get("preview"))
         self.send_json({"status": "success", "result": reading})
+
+    def kr_free(self, data):
+        """무료 맛보기: 저장하지 않고 계산만 해서 앞부분을 보여 줍니다."""
+        if data.get("agree") is not True:
+            raise BadInput("만 19세 이상 여부와 개인정보 이용에 동의해 주세요.")
+        person_a = clean_person(data.get("person"), "본인")
+        self.send_json({"status": "success", "taste": readings.free_taste(person_a)})
 
     def kr_preview(self, data):
         given = str(data.get("admin_key", ""))

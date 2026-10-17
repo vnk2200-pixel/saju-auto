@@ -485,6 +485,29 @@ def birth_label(info):
     return s
 
 
+# ------------------------------------------------------------------
+# 무료 맛보기 (결제 전에 보여 주는 앞부분)
+# ------------------------------------------------------------------
+
+def free_taste(person_a):
+    A = build_person(person_a)
+    a = A["a"]
+    dm = T.DAY_MASTER[a["day_stem"]]
+    months = best_months(a, "love")
+    return {
+        "name": A["name"],
+        "animal": a["animal"] + "띠",
+        "title": nim(A) + "은 " + dm["title"],
+        "paras": [dm["love"], love_star(A)],
+        "good_count": len(months),
+        "locked": [
+            "인연의 기운이 좋은 달" + (" " + str(len(months)) + "곳" if months else ""),
+            "다가오는 2027년, 나의 인연 흐름",
+            "인연을 부르는 행운의 색과 방향",
+        ],
+    }
+
+
 def generate(product_id, person_a, person_b=None):
     product = PRODUCT_BY_ID[product_id]
     A = build_person(person_a)
