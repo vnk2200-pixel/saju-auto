@@ -60,6 +60,11 @@ td:nth-child(3){white-space:nowrap;font-weight:700}
 @keyframes r{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion: reduce){.spin{animation:none}}
 .preview{background:#e9f1ff;border:1px solid #9db6e6;border-radius:10px;padding:8px 12px;font-size:14px;margin-top:10px}
+.up{border:2px solid #d9a441;background:#fffaf0}
+.up h3{font-size:20px;color:#653d31;margin:0 0 6px}
+.up ul{margin:8px 0 14px;padding-left:20px;line-height:1.8}
+.upbtn{display:block;width:100%;text-align:center;padding:15px;border-radius:12px;background:#d9a441;color:#2b2100;font-weight:800;font-size:17px;text-decoration:none;border:0;cursor:pointer;margin-top:8px}
+.upbtn.sub{background:#f1e6d4;color:#4a3a2e;font-size:16px}
 @media(max-width:520px){.g{font-size:24px}.score .num{font-size:40px}}
 </style>
 </head>
@@ -141,10 +146,27 @@ td:nth-child(3){white-space:nowrap;font-weight:700}
       (receipt ? '<a href="'+esc(receipt)+'" target="_blank" rel="noopener">결제 영수증 보기</a>' : '') +
       '</div></div>';
     res.people.forEach(function(p){ h += chartHtml(p); });
-    res.sections.forEach(function(s){ h += sectionHtml(s); });
+    res.sections.forEach(function(s){
+      if (res.product && res.product.id === "love-first" && s.title === "더 깊이 알고 싶다면") return;
+      h += sectionHtml(s);
+    });
+    if (res.product && res.product.id === "love-first"){
+      h += '<div class="card up"><h3>💌 여기서 끝내기 아쉽다면</h3>' +
+        '<p>방금 본 건 앞부분이에요. 전체 풀이에서는 이런 이야기까지 이어서 볼 수 있어요.</p>' +
+        '<ul><li>나와 맞는 사람의 모습과 배우자 자리</li><li>2027년 열두 달, 달마다 인연 흐름</li><li>도화·역마, 인연을 부르는 생활 조언</li></ul>' +
+        '<button type="button" class="upbtn" data-pick="love">9,900원으로 전체 인연 풀이 보기 →</button>' +
+        '<button type="button" class="upbtn sub" data-pick="match">그 사람과 나, 궁합 보기 (9,900원) →</button>' +
+        '<p class="muted" style="font-size:13px;margin:10px 0 0">내 정보는 그대로 채워져 있어요. 동의만 체크하고 결제하면 바로 열려요.</p></div>';
+    }
     h += '<div class="card disc">'+esc(res.disclaimer)+'<br><br>러브 오라클 · 고객센터 010-5088-9989 (평일 09:00~18:00)</div>' +
       '<p style="text-align:center;margin-top:18px"><a class="btn" href="/">다른 풀이 보러 가기</a></p>';
     app.innerHTML = h;
+    Array.prototype.forEach.call(document.querySelectorAll(".upbtn"), function(b){
+      b.addEventListener("click", function(){
+        try { if (res.prefill) localStorage.setItem("lo_prefill", JSON.stringify(res.prefill)); } catch(e){}
+        location.href = "/?pick=" + encodeURIComponent(b.getAttribute("data-pick"));
+      });
+    });
     document.getElementById("copy").addEventListener("click", function(){
       var input = document.getElementById("link"), btn = this;
       function done(){ btn.textContent = "복사됨"; setTimeout(function(){ btn.textContent = "링크 복사"; }, 2000); }

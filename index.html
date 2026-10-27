@@ -367,6 +367,24 @@ footer{margin-top:20px;background:var(--card);border:1px solid var(--line);borde
   fetch("/api/kr/config").then(function(r){ return r.json(); }).then(function(c){
     cfg = c;
     renderProducts();
+    (function(){
+      var pick = new URLSearchParams(location.search).get("pick");
+      if (!pick) return;
+      var idx = -1; cfg.products.forEach(function(x, j){ if (x.id === pick) idx = j; });
+      if (idx < 0) return;
+      try {
+        var pf = JSON.parse(localStorage.getItem("lo_prefill") || "null");
+        if (pf){
+          $("a_name").value = pf.name || "";
+          $("a_gender").value = pf.gender || "";
+          $("a_cal").value = pf.cal || "solar";
+          $("a_birth").value = pf.birth || "";
+          if (pf.time === "모름"){ $("a_unknown").checked = true; $("a_time").disabled = true; $("a_time").value = ""; }
+          else { $("a_time").value = pf.time || ""; }
+        }
+      } catch(e){}
+      choose(idx);
+    })();
     $("testBanner").hidden = !c.test_mode;
     if (c.provider === "kakao"){
       $("payHint").textContent = "카카오페이로 결제합니다. 휴대폰에서는 카카오톡이 열리고, PC에서는 QR코드를 휴대폰으로 찍어 결제합니다. 결제가 끝나면 바로 풀이 결과 화면으로 이동합니다.";

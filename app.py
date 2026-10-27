@@ -488,6 +488,20 @@ def payment_still_valid(payment_key):
     return valid
 
 
+def prefill_of(person):
+    """다음 풀이 결제 화면에 미리 채워 줄 본인 정보 (본인 결과 화면에서만 사용)"""
+    if not isinstance(person, dict):
+        return None
+    hour = person.get("hour")
+    return {
+        "name": person.get("name", ""),
+        "gender": person.get("gender", ""),
+        "cal": "leap" if person.get("leap") else person.get("cal", "solar"),
+        "birth": person.get("input_date", ""),
+        "time": "모름" if hour is None else "%02d:%02d" % (hour, person.get("minute", 0)),
+    }
+
+
 def make_result(sealed_order, payment_key="", preview=False):
     result_token = seal({
         "t": "result",
@@ -502,6 +516,7 @@ def make_result(sealed_order, payment_key="", preview=False):
     reading = readings.generate(sealed_order["pid"], sealed_order["A"], sealed_order.get("B"))
     reading["order_id"] = sealed_order.get("oid", "")
     reading["preview"] = preview
+    reading["prefill"] = prefill_of(sealed_order["A"])
     return result_token, reading
 
 
@@ -1032,6 +1047,7 @@ class SajuHandler(BaseHTTPRequestHandler):
         reading = readings.generate(sealed["pid"], sealed["A"], sealed.get("B"))
         reading["order_id"] = sealed.get("oid", "")
         reading["preview"] = bool(sealed.get("preview"))
+        reading["prefill"] = prefill_of(sealed["A"])
         self.send_json({"status": "success", "result": reading})
 
     def kr_free(self, data):
