@@ -354,7 +354,7 @@ def clean_person(raw, label):
 
 def clean_order(data):
     product = readings.PRODUCT_BY_ID.get(str(data.get("product", "")))
-    if not product:
+    if not product or product["id"] in readings.HIDDEN_IDS:
         raise BadInput("상품을 선택해 주세요.")
     if data.get("agree") is not True:
         raise BadInput("이용조건 및 취소·환불 안내에 동의해 주세요.")
