@@ -325,7 +325,7 @@ def main():
         post = fallback_post(facts, plan, history)
         source = "fallback"
 
-    if not post["slides"][-1].startswith("프로필") and CTA not in post["slides"][-1]:
+    if "프로필" not in post["slides"][-1]:
         post["slides"].append(CTA)
 
     post.update({
