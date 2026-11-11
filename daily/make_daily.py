@@ -230,7 +230,7 @@ def ask_claude(facts, plan, avoid, feedback=""):
     )
     body = json.dumps({
         "model": MODEL,
-        "max_tokens": 1500,
+        "max_tokens": 6000,
         "temperature": 1.0,
         "system": SYSTEM,
         "messages": [{"role": "user", "content": user}],
@@ -243,7 +243,8 @@ def ask_claude(facts, plan, avoid, feedback=""):
     text = "".join(c.get("text", "") for c in data.get("content", []) if c.get("type") == "text")
     m = re.search(r"\{.*\}", text, re.S)
     if not m:
-        raise ValueError("JSON 없음")
+        kinds = ",".join(c.get("type", "?") for c in data.get("content", []))
+        raise ValueError("JSON 없음 (stop=%s, blocks=%s, text=%r)" % (data.get("stop_reason"), kinds, text[:80]))
     post = json.loads(m.group(0))
     post["slides"] = [str(s).strip() for s in post.get("slides", []) if str(s).strip()]
     post["hashtags"] = [("#" + str(h).lstrip("#")).replace(" ", "") for h in post.get("hashtags", [])][:12]
@@ -307,10 +308,17 @@ def main():
         for attempt in range(4):
             try:
                 cand, usage = ask_claude(facts, plan, avoid, feedback)
-            except Exception as e:  # 네트워크·잔액 부족 등
+            except urllib.error.HTTPError as e:  # 열쇠 오류·잔액 부족 등
+                body = e.read().decode("utf-8", "replace")[:200]
+                tries.append("AI 오류 %s: %s" % (e.code, body))
+                print("AI HTTP ERROR:", e.code, body)
+                if e.code in (400, 401, 403, 404):
+                    break
+                continue
+            except Exception as e:  # 네트워크 끊김, 형식 오류 → 다시 시도
                 tries.append("AI 오류: %r" % (e,))
                 print("AI ERROR:", repr(e))
-                break
+                continue
             problem = check_rules(cand) or too_similar(cand, history)
             tries.append(problem or "통과")
             print("try", attempt + 1, cand.get("hook"), "->", problem or "OK", usage)
