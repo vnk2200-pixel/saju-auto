@@ -50,8 +50,8 @@ jobs:
       - name: 오늘 결과를 daily-output 공간에 올리기 (SNS 업로드용 공개 주소)
         run: |
           set -e
-          git config user.name "saju-bot"
-          git config user.email "saju-bot@users.noreply.github.com"
+          git config --global user.name "saju-bot"
+          git config --global user.email "saju-bot@users.noreply.github.com"
           mkdir -p /tmp/pub && cp out/* /tmp/pub/
           cd /tmp/pub
           git init -q -b daily-output
