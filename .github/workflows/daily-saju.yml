@@ -1,0 +1,71 @@
+# 매일 새벽 5시 30분(한국 시간)에 오늘의 사주 글 + 영상을 자동으로 만듭니다.
+# 결제 사이트(Render)와는 따로 GitHub 안에서만 돌아가므로 사이트에 영향이 없습니다.
+name: daily-saju
+
+on:
+  schedule:
+    - cron: "30 20 * * *"   # UTC 20:30 = 한국 05:30
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/daily-saju.yml"
+      - "daily/make_*.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-saju
+  cancel-in-progress: false
+
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 준비 (한글 글꼴, 영상 도구)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk ffmpeg > /dev/null
+          pip install --quiet pillow numpy
+
+      - name: 오늘의 글 쓰기 (Claude)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python daily/make_daily.py
+
+      - name: 영상 만들기 (잔잔한 음악)
+        run: python daily/make_video.py
+
+      - name: 결과 보관 (최근 30일)
+        uses: actions/upload-artifact@v4
+        with:
+          name: saju-${{ github.run_number }}
+          path: out/
+          retention-days: 30
+
+      - name: 오늘 결과를 daily-output 공간에 올리기 (SNS 업로드용 공개 주소)
+        run: |
+          set -e
+          git config user.name "saju-bot"
+          git config user.email "saju-bot@users.noreply.github.com"
+          mkdir -p /tmp/pub && cp out/* /tmp/pub/
+          cd /tmp/pub
+          git init -q -b daily-output
+          git add -A
+          git commit -q -m "daily output $(date -u +%F)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" daily-output
+
+      - name: 기록 남기기 (겹침 점검용)
+        run: |
+          set -e
+          python daily/record.py
+          git config user.name "saju-bot"
+          git config user.email "saju-bot@users.noreply.github.com"
+          git add daily/history.json
+          git commit -q -m "daily history $(date -u +%F) [skip render]" || exit 0
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main
