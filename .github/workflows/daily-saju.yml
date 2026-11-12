@@ -1,16 +1,17 @@
-# 매일 새벽 5시 30분(한국 시간)에 오늘의 사주 글 + 영상을 자동으로 만듭니다.
+# 매일 아침 7시 30분(한국 시간)에 오늘의 사주 글 + 영상을 만들고 페이스북·인스타에 자동으로 올립니다.
 # 결제 사이트(Render)와는 따로 GitHub 안에서만 돌아가므로 사이트에 영향이 없습니다.
 name: daily-saju
 
 on:
   schedule:
-    - cron: "30 20 * * *"   # UTC 20:30 = 한국 05:30
+    - cron: "30 22 * * *"   # UTC 22:30 = 한국 07:30
   workflow_dispatch: {}
   push:
     branches: [main]
     paths:
       - ".github/workflows/daily-saju.yml"
       - "daily/make_*.py"
+      - "daily/post_meta.py"
 
 permissions:
   contents: write
@@ -58,6 +59,16 @@ jobs:
           git add -A
           git commit -q -m "daily output $(date -u +%F)"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" daily-output
+          echo "VIDEO_URL=https://raw.githubusercontent.com/${{ github.repository }}/$(git rev-parse HEAD)/video.mp4" >> "$GITHUB_ENV"
+
+      - name: 페이스북·인스타에 자동으로 올리기
+        id: post
+        continue-on-error: true
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: |
+          sleep 20
+          python daily/post_meta.py
 
       - name: 기록 남기기 (겹침 점검용)
         run: |
@@ -65,7 +76,13 @@ jobs:
           python daily/record.py
           git config user.name "saju-bot"
           git config user.email "saju-bot@users.noreply.github.com"
-          git add daily/history.json
+          git add daily/history.json daily/posted.json 2>/dev/null || git add daily/history.json
           git commit -q -m "daily history $(date -u +%F) [skip render]" || exit 0
           git pull -q --rebase origin main
           git push -q origin HEAD:main
+
+      - name: 올리기 실패 알림
+        if: steps.post.outcome == 'failure'
+        run: |
+          echo "자동 올리기가 실패했습니다. out/posted.json 의 errors 를 확인하세요."
+          exit 1
