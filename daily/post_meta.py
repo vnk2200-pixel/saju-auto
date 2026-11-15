@@ -165,7 +165,8 @@ def main():
     elif page and not ig:
         result["errors"].append("인스타그램 계정이 페이지에 연결되어 있지 않음")
 
-    posted[post["date"]] = {"facebook": result["facebook"], "instagram": result["instagram"]}
+    posted[post["date"]] = {"facebook": result["facebook"], "instagram": result["instagram"],
+                            "errors": result["errors"][:5]}
     keep = sorted(posted)[-60:]
     with open(POSTED, "w", encoding="utf-8") as f:
         json.dump({k: posted[k] for k in keep}, f, ensure_ascii=False, indent=1)
