@@ -17,5 +17,10 @@
   "errors": [
    "페이지 찾기: HTTP 400: API access blocked. (code 200/5258005)"
   ]
+ },
+ "2026-11-16": {
+  "facebook": "2359228968145978",
+  "instagram": "17965324464250806",
+  "errors": []
  }
 }
