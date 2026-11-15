@@ -139,7 +139,10 @@ def main():
     try:
         page, ig = find_page()
     except MetaError as e:
-        result["errors"].append("페이지 찾기: %s" % e)
+        hint = ""
+        if "access blocked" in str(e).lower():
+            hint = " → developers.facebook.com/apps 에서 '계정 확인'을 끝내면 풀립니다"
+        result["errors"].append("페이지 찾기: %s%s" % (e, hint))
         print("ERROR", result["errors"][-1])
         page, ig = None, None
 
