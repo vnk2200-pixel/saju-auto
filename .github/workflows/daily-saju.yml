@@ -42,6 +42,9 @@ jobs:
       - name: 영상 만들기 (잔잔한 음악)
         run: python daily/make_video.py
 
+      - name: 유튜브용 제목·설명 만들기 (폰에서 직접 올리기용)
+        run: python daily/make_youtube.py
+
       - name: 결과 보관 (최근 30일)
         uses: actions/upload-artifact@v4
         with:
