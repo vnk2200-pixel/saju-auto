@@ -32,7 +32,10 @@ ROOT = os.path.dirname(HERE)
 OUT = os.path.join(ROOT, "out")
 RECORD = os.path.join(HERE, "threads_posted.json")
 
-TOKEN = os.environ.get("THREADS_TOKEN", "").strip()
+SEED = os.environ.get("THREADS_TOKEN", "").strip()  # 금고에 넣은 처음 토큰 (암호 열쇠로도 씀)
+TOKEN = SEED
+TOKEN_FILE = os.path.join(HERE, "threads_token.json")  # 연장된 토큰을 암호화해서 보관
+REFRESH_DAYS = 7
 API_KEY = os.environ.get("ANTHROPIC_API_KEY", "").strip()
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5-5").strip()
 THREADS = "https://graph.threads.net/v1.0"
@@ -170,10 +173,10 @@ def write_text(post, record):
 # 스레드에 올리기
 # ------------------------------------------------------------------
 
-def call(method, path, params):
+def call(method, path, params, base=THREADS):
     params = dict(params)
     params["access_token"] = TOKEN
-    url = THREADS + path
+    url = base + path
     data = None
     if method == "GET":
         url += "?" + urllib.parse.urlencode(params)
@@ -211,12 +214,63 @@ def publish(text):
             time.sleep(20)
 
 
+# ------------------------------------------------------------------
+# 토큰 자동 연장 (60일짜리 토큰을 일주일마다 새것으로 바꿔 만료되지 않게 함)
+# 새 토큰은 금고 토큰으로 만든 열쇠로 암호화해서 저장 → 저장소에 보여도 읽을 수 없음
+# 대표님이 금고 토큰을 새로 바꾸면, 예전 파일은 못 열리므로 자동으로 새 금고 토큰을 씀
+# ------------------------------------------------------------------
+
+def _fernet():
+    import base64
+    import hashlib
+    from cryptography.fernet import Fernet
+    key = base64.urlsafe_b64encode(hashlib.sha256(("saju-threads:" + SEED).encode("utf-8")).digest())
+    return Fernet(key)
+
+
+def load_token():
+    global TOKEN
+    info = load(TOKEN_FILE, {})
+    if info.get("data"):
+        try:
+            TOKEN = _fernet().decrypt(info["data"].encode("ascii")).decode("utf-8")
+            print("threads token: 연장된 토큰 사용 (마지막 연장 %s)" % info.get("refreshed"))
+        except Exception:
+            TOKEN = SEED
+            print("threads token: 금고 토큰 사용 (보관 토큰을 열 수 없음)")
+    return info
+
+
+def refresh_token(info):
+    global TOKEN
+    last = info.get("refreshed")
+    today = kst_today()
+    if last and (today - datetime.date.fromisoformat(last)).days < REFRESH_DAYS:
+        return
+    try:
+        res = call("GET", "/refresh_access_token", {"grant_type": "th_refresh_token"}, base="https://graph.threads.net")
+    except ThreadsError as e:
+        print("threads token: 연장 건너뜀 (%s)" % str(e)[:80])
+        return
+    new = (res.get("access_token") or "").strip()
+    if not new:
+        return
+    TOKEN = new
+    days = int(res.get("expires_in", 0)) // 86400
+    data = _fernet().encrypt(new.encode("utf-8")).decode("ascii")
+    with open(TOKEN_FILE, "w", encoding="utf-8") as f:
+        json.dump({"refreshed": today.isoformat(), "valid_days": days, "data": data}, f, ensure_ascii=False, indent=1)
+    print("threads token: 연장 완료 (앞으로 약 %d일)" % days)
+
+
 def main():
     post = load(os.path.join(OUT, "post.json"), None) or {}
     day = post.get("date") or kst_today().isoformat()
     if not TOKEN:
         print("THREADS_TOKEN 없음 - 스레드 올리기 건너뜀")
         return 0
+
+    refresh_token(load_token())
 
     record = load(RECORD, {})
     if (record.get(day) or {}).get("id"):

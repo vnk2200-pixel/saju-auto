@@ -32,7 +32,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq fonts-noto-cjk ffmpeg > /dev/null
-          pip install --quiet pillow numpy
+          pip install --quiet pillow numpy cryptography
 
       - name: 오늘의 글 쓰기 (Claude)
         env:
@@ -85,7 +85,7 @@ jobs:
           python daily/record.py
           git config user.name "saju-bot"
           git config user.email "saju-bot@users.noreply.github.com"
-          git add daily/history.json daily/posted.json daily/threads_posted.json 2>/dev/null || git add daily/history.json
+          git add daily/history.json daily/posted.json daily/threads_posted.json daily/threads_token.json 2>/dev/null || git add daily/history.json
           git commit -q -m "daily history $(date -u +%F) [skip render]" || exit 0
           git pull -q --rebase origin main
           git push -q origin HEAD:main
