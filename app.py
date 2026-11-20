@@ -82,6 +82,60 @@ else:
 # PAYPAL FUNCTIONS
 # ============================================================
 
+
+# ------------------------------------------------------------
+# 방문·무료·결제 숫자 세기 (개인정보 없이 숫자만)
+# ------------------------------------------------------------
+import threading
+
+_STATS_LOCK = threading.Lock()
+_STATS = {}
+_STATS_SEEN = {}
+BOT_WORDS = ("bot", "crawl", "spider", "slurp", "facebookexternalhit", "preview", "render", "uptime", "curl", "python")
+
+
+def _kst_day():
+    return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y-%m-%d")
+
+
+def _from_of(referer):
+    host = urlparse(referer or "").netloc.lower()
+    for key, name in (("threads", "스레드"), ("instagram", "인스타"), ("facebook", "페이스북"), ("fb.", "페이스북"),
+                      ("naver", "네이버"), ("youtube", "유튜브"), ("youtu.be", "유튜브"), ("google", "구글"),
+                      ("daum", "다음"), ("kakao", "카카오")):
+        if key in host:
+            return name
+    return "직접·기타" if not host or "onrender" in host else host[:30]
+
+
+def stat_add(event, who="", referer=""):
+    day = _kst_day()
+    with _STATS_LOCK:
+        d = _STATS.setdefault(day, {"방문": 0, "방문자": 0, "무료사주": 0, "결제시작": 0, "결제완료": 0, "들어온곳": {}})
+        if who:
+            seen = _STATS_SEEN.setdefault(day + event, set())
+            if who in seen:
+                if event == "방문":
+                    d["방문"] += 1
+                return
+            seen.add(who)
+        if event == "방문":
+            d["방문"] += 1
+            d["방문자"] += 1
+            f = _from_of(referer)
+            d["들어온곳"][f] = d["들어온곳"].get(f, 0) + 1
+        else:
+            d[event] = d.get(event, 0) + 1
+        for old in sorted(_STATS)[:-60]:
+            _STATS.pop(old, None)
+        for k in [k for k in _STATS_SEEN if k[:10] not in _STATS]:
+            _STATS_SEEN.pop(k, None)
+
+
+def stats_snapshot():
+    with _STATS_LOCK:
+        return json.loads(json.dumps(_STATS, ensure_ascii=False))
+
 def paypal_access_token():
     if not PAYPAL_CLIENT_ID or not PAYPAL_CLIENT_SECRET:
         raise RuntimeError(
@@ -565,6 +619,7 @@ class SajuHandler(BaseHTTPRequestHandler):
             self.send_text("Page not found", 404)
 
     def send_json(self, data, status=200):
+        self._last_status = status
         body = json.dumps(data, ensure_ascii=False).encode("utf-8")
 
         self.send_response(status)
@@ -606,6 +661,15 @@ class SajuHandler(BaseHTTPRequestHandler):
         self.send_no_cache_headers()
         self.end_headers()
 
+    def visitor_id(self):
+        ip = (self.headers.get("X-Forwarded-For") or self.client_address[0] or "").split(",")[0].strip()
+        ua = self.headers.get("User-Agent", "")
+        return hashlib.sha256((ip + "|" + ua + "|" + _kst_day()).encode("utf-8")).hexdigest()[:16]
+
+    def is_bot(self):
+        ua = (self.headers.get("User-Agent") or "").lower()
+        return not ua or any(w in ua for w in BOT_WORDS)
+
     def do_GET(self):
         path = urlparse(self.path).path
 
@@ -622,7 +686,16 @@ class SajuHandler(BaseHTTPRequestHandler):
         # ----------------------------------------------------
 
         if path in ("/", "/index.html"):
+            if not self.is_bot():
+                try:
+                    stat_add("방문", self.visitor_id(), self.headers.get("Referer", ""))
+                except Exception:
+                    pass
             self.send_html("index.html")
+            return
+
+        if path == "/api/kr/stats":
+            self.send_json({"status": "success", "days": stats_snapshot()})
             return
 
         if path.startswith(KR_PAGES) or path == "/kr/fail":
@@ -863,6 +936,22 @@ class SajuHandler(BaseHTTPRequestHandler):
         self.send_json({"status": "error", "message": message, "code": code}, status)
 
     def handle_kr(self, path, data):
+        self._last_status = 0
+        try:
+            self._handle_kr(path, data)
+        finally:
+            try:
+                event = {"/api/kr/free": "무료사주", "/api/kr/order": "결제시작",
+                         "/api/kr/confirm": "결제완료", "/api/kr/kakao-approve": "결제완료"}.get(path)
+                if event and getattr(self, "_last_status", 0) == 200:
+                    who = self.visitor_id()
+                    if event == "결제완료":
+                        who = hashlib.sha256(json.dumps(data, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()[:16]
+                    stat_add(event, who)
+            except Exception:
+                pass
+
+    def _handle_kr(self, path, data):
         try:
             if path == "/api/kr/order":
                 self.kr_order(data)
