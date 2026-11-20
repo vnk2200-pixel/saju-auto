@@ -82,13 +82,17 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python daily/post_threads.py
 
+      - name: 사이트 방문·결제 숫자 보관
+        continue-on-error: true
+        run: python daily/save_stats.py
+
       - name: 기록 남기기 (겹침 점검용)
         run: |
           set -e
           python daily/record.py
           git config user.name "saju-bot"
           git config user.email "saju-bot@users.noreply.github.com"
-          git add daily/history.json daily/posted.json daily/threads_posted.json daily/threads_token.json 2>/dev/null || git add daily/history.json
+          git add daily/history.json daily/posted.json daily/threads_posted.json daily/threads_token.json daily/site_stats.json 2>/dev/null || git add daily/history.json
           git commit -q -m "daily history $(date -u +%F) [skip render]" || exit 0
           git pull -q --rebase origin main
           git push -q origin HEAD:main
