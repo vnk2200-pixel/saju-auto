@@ -65,6 +65,7 @@ details p{margin:8px 0;color:#4d443e;font-size:15px}
 .taste{margin-top:16px;border-top:1px dashed var(--line);padding-top:16px}
 .taste h3{margin:0 0 8px;font-size:18px}
 .taste p{line-height:1.75;margin:0 0 10px}
+.sharebtn{display:block;width:100%;margin-top:12px;padding:13px;border-radius:12px;border:0;background:#FEE500;color:#3c1e1e;font-size:16px;font-weight:700;cursor:pointer}
 .lock{list-style:none;margin:12px 0 0;padding:12px 14px;background:#f4efe8;border-radius:12px;line-height:1.9;color:#5b5049}
 .lock li:before{content:"🔒 "}
 .blur{filter:blur(4px);user-select:none}
@@ -343,9 +344,21 @@ footer{margin-top:20px;background:var(--card);border:1px solid var(--line);borde
         '<ul class="lock">' + t.locked.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul>' +
         (t.good_count ? '<p class="blur" aria-hidden="true">인연의 기운이 좋은 달은 ○월, ○○월입니다. 이 시기에는…</p>' : '') +
         '<button class="freebtn" id="moreBtn" type="button">9,900원으로 전체 풀이 보기</button>' +
-        '<p class="hint">카카오페이로 결제하면 바로 이 화면에서 전체 풀이가 열려요.</p>';
+        '<p class="hint">카카오페이로 결제하면 바로 이 화면에서 전체 풀이가 열려요.</p>' +
+        '<button class="sharebtn" id="shareBtn" type="button">💬 친구에게 무료 사주 알려 주기</button>' +
+        '<p class="hint" id="shareMsg" hidden></p>';
       $("taste").innerHTML = html; $("taste").hidden = false;
       $("taste").scrollIntoView({behavior:"smooth", block:"start"});
+      $("shareBtn").addEventListener("click", function(){
+        var url = location.origin + "/?from=share";
+        var text = "나는 '" + t.title.split("은 ").slice(1).join("은 ") + "' 타입이래 🔮\n2027년 새해 인연 흐름, 생년월일만 넣으면 무료로 볼 수 있어. 너도 한번 봐 봐!";
+        function done(m){ $("shareMsg").textContent = m; $("shareMsg").hidden = false; }
+        if (navigator.share) {
+          navigator.share({title: "2027 새해, 나의 행운은?", text: text, url: url}).catch(function(){});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text + "\n" + url).then(function(){ done("링크를 복사했어요. 카카오톡 대화창에 붙여 넣어 보내 주세요."); }, function(){ done(url); });
+        } else { done(url); }
+      });
       $("moreBtn").addEventListener("click", function(){
         ["name","gender","cal","birth","time"].forEach(function(k){ $("a_"+k).value = $("f_"+k).value; });
         $("a_unknown").checked = $("f_unknown").checked; $("a_time").disabled = $("f_unknown").checked;

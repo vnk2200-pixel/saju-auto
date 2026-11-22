@@ -102,7 +102,7 @@ def _from_of(referer):
     host = urlparse(referer or "").netloc.lower()
     for key, name in (("threads", "스레드"), ("instagram", "인스타"), ("facebook", "페이스북"), ("fb.", "페이스북"),
                       ("naver", "네이버"), ("youtube", "유튜브"), ("youtu.be", "유튜브"), ("google", "구글"),
-                      ("daum", "다음"), ("kakao", "카카오")):
+                      ("share.kakao", "친구 공유"), ("daum", "다음"), ("kakao", "카카오")):
         if key in host:
             return name
     return "직접·기타" if not host or "onrender" in host else host[:30]
@@ -688,7 +688,10 @@ class SajuHandler(BaseHTTPRequestHandler):
         if path in ("/", "/index.html"):
             if not self.is_bot():
                 try:
-                    stat_add("방문", self.visitor_id(), self.headers.get("Referer", ""))
+                    ref = self.headers.get("Referer", "")
+                    if "from=share" in (urlparse(self.path).query or ""):
+                        ref = "https://share.kakao/"
+                    stat_add("방문", self.visitor_id(), ref)
                 except Exception:
                     pass
             self.send_html("index.html")
